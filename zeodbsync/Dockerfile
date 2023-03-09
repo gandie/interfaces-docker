@@ -1,10 +1,16 @@
 FROM ubuntu:latest
 
 RUN apt update
-RUN apt install git python3 python3-pip tree -y
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
+    git \
+    python3 \
+    python3-pip \
+    tree -y
 
-RUN pip3 install zope zope.mkzeoinstance \
-    git+https://github.com/perfact/zodbsync
+RUN pip3 install zope \
+    zope.mkzeoinstance \
+    git+https://github.com/perfact/zodbsync \
+    Paste
 
 COPY fs/ /
 
