@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  zeo:
+    image: klappson/zeodbsync
+    ports:
+      - 9999
+  postgres:
+    image: postgres:latest
+    environment:
+      - LANG=en_US.utf8
+      - POSTGRES_USER=dockerzope
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432
+  haproxy:
+    image: haproxy:lts-bullseye
+    ports:
+      - 443
