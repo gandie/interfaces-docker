@@ -4,13 +4,13 @@ import subprocess
 from time import sleep
 
 
-ZOPEREPO_PATH = "/vol/zodbsync"
+ZOPEREPO_PATH = "/vol/zoperepo"
 
 
 programs = [
     ['zeo/bin/zeoctl', 'start'],
-    ['zodbsync', '-c', 'playback' , '--override', '/'],
-    ['zodbsync', '-c', 'watch'],
+    ['zodbsync', 'playback', '--override', '/'],
+    ['zodbsync', 'watch'],
 ]
 def run_programms():
     print("\n\nCalling Binaries...")
@@ -27,5 +27,18 @@ def run_programms():
         sleep(magic_number)
 
 
+mkdirs = [
+    ZOPEREPO_PATH,
+]
+def create_dirs():
+    print("\n\nCreating dirs...")
+    for mkdir in mkdirs:
+        print(f'Creating "{mkdir}"')
+        subprocess.run(
+            ['mkdir', '-p', mkdir]
+        )
+
+
 if __name__ == '__main__':
+    create_dirs()
     run_programms()
