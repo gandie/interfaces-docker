@@ -1,0 +1,31 @@
+ #! /usr/bin/python3
+import threading
+import subprocess
+from time import sleep
+
+
+ZOPEREPO_PATH = "/vol/zodbsync"
+
+
+programs = [
+    ['zeo/bin/zeoctl', 'start'],
+    ['zodbsync', '-c', 'playback' , '--override', '/'],
+    ['zodbsync', '-c', 'watch'],
+]
+def run_programms():
+    print("\n\nCalling Binaries...")
+
+    magic_number = 3
+    for program in programs:
+        print(f'\nStarting "{" ".join(program)}"')
+        threading.Thread(
+            target=subprocess.run,
+            kwargs={'args': program},
+            name=' '.join(program),
+            daemon=False,
+        ).start()
+        sleep(magic_number)
+
+
+if __name__ == '__main__':
+    run_programms()

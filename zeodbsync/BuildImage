@@ -1,0 +1,3 @@
+#! /bin/bash
+docker image rm klappson/zeodbsync --force || true
+docker build -t klappson/zeodbsync . || true
