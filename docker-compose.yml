@@ -1,9 +1,31 @@
 version: "3.7"
+networks:
+  host:
+    external: true
+  backend:
+    internal: true
+    ipam:
+      driver: "default"
+      config:
+        - subnet: 10.0.0.0/8
+
+volumes:
+  postgres-drive:
+    name: "postgres-drive"
+
 services:
+  
   zeo:
-    image: klappson/zeodbsync
+    build: zeodbsync
     ports:
       - 9999
+    volumes:
+      - type: bind
+        source: ./mounts
+        target: /vol
+    networks:
+      - backend
+  
   postgres:
     image: postgres:latest
     environment:
@@ -11,9 +33,21 @@ services:
       - POSTGRES_USER=dockerzope
       - POSTGRES_PASSWORD=12345
       - POSTGRES_HOST_AUTH_METHOD=trust
+      - PGDATA=/vol/data
     ports:
       - 5432
+    volumes:
+      - postgres-drive:/vol
+    networks:
+      - backend
+  
   haproxy:
-    image: haproxy:lts-bullseye
+    build: haproxy
     ports:
-      - 443
+      - 80
+    volumes:
+      - type: bind
+        source: ./mounts/haproxy
+        target: /usr/local/etc/haproxy
+    networks:
+      - backend
