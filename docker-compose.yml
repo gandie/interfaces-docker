@@ -3,6 +3,7 @@ version: "3.7"
 networks:
   backend:
     internal: true
+    name: "backend"
     ipam:
       config:
         - subnet: 10.0.0.0/8
@@ -15,6 +16,7 @@ services:
   
   zeo:
     build: zeodbsync
+    restart: always
     ports:
       - 9999
     volumes:
@@ -26,6 +28,7 @@ services:
   
   postgres:
     image: postgres:latest
+    restart: always
     environment:
       - LANG=en_US.utf8
       - POSTGRES_USER=dockerzope
@@ -41,16 +44,18 @@ services:
   
   zope:
     build: zope
+    restart: always
     networks:
       - backend
+    volumes:
+      - type: bind
+        source: ./mounts
+        target: /vol
   
   haproxy:
     build: haproxy
-    ports:
+    restart: always
+    expose:
       - 80
-    volumes:
-      - type: bind
-        source: ./mounts/haproxy
-        target: /usr/local/etc/haproxy
     networks:
       - backend
