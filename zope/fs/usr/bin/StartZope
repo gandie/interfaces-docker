@@ -67,7 +67,13 @@ def mk_symlinks():
         subprocess.run(['ln', '-s', symconf['user_copy'], symconf['symlink']])
 
 
+def print_networkinfo():
+    subprocess.run(['ip', 'a'])
+
+
 if __name__ == '__main__':
+    print_networkinfo()
+
     print('\nCreating dirs...')
     create_dirs()
 

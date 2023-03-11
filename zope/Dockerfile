@@ -5,6 +5,7 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
         python3 \
         python3-pip \
         git \
+        iproute2 \
         tree -y
 
 RUN pip3 install zope \

@@ -39,6 +39,11 @@ def create_dirs():
         )
 
 
+def print_networkinfo():
+    subprocess.run(['ip', 'a'])
+
+
 if __name__ == '__main__':
+    print_networkinfo()
     create_dirs()
     run_programms()

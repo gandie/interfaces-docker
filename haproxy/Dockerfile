@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 
 RUN apt update
-RUN apt install haproxy -y
+RUN apt install haproxy \
+    iproute2 -y
 
 COPY fs/ /
 
