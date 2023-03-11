@@ -1,0 +1,8 @@
+#! /bin/bash
+docker container stop klappson-haproxy-docker || true
+docker rm klappson-haproxy-docker || true
+
+docker run \
+    -it \
+    --name klappson-haproxy-docker \
+    klappson/haproxy
