@@ -1,11 +1,9 @@
 version: "3.7"
+
 networks:
-  host:
-    external: true
   backend:
     internal: true
     ipam:
-      driver: "default"
       config:
         - subnet: 10.0.0.0/8
 
