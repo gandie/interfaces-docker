@@ -1,0 +1,3 @@
+#! /bin/bash
+# docker image rm klappson/haproxy --force || true
+docker build -t klappson/zope . || true

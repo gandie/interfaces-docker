@@ -1,0 +1,8 @@
+#! /bin/bash
+docker container stop klappson-zope-docker || true
+docker rm klappson-zope-docker || true
+
+docker run \
+    -it \
+    --name klappson-zope-docker \
+    klappson/zope
