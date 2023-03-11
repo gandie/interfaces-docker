@@ -41,6 +41,11 @@ services:
     networks:
       - backend
   
+  zope:
+    build: zope
+    networks:
+      - backend
+  
   haproxy:
     build: haproxy
     ports:
