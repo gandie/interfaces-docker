@@ -4,3 +4,13 @@ echo 'Building zodbsync'
 cd zeodbsync
 ./BuildImage
 cd ..
+
+echo 'Building zope'
+cd zope
+./BuildImage
+cd ..
+
+echo 'Building haproxy'
+cd haproxy
+./BuildImage
+cd ..
