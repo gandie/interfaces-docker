@@ -10,6 +10,14 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
 
 RUN pip3 install zope \
     zope.mkzeoinstance \
+    psycopg2-binary \
+    Products.PythonScripts \
+    Products.ZSQLMethods \
+    Products.SiteErrorLog \
+    Products.StandardCacheManagers \
+    Products.ExternalMethod \
+    Products.MailHost \
+    git+https://github.com/perfact/ZPsycopgDA \
     git+https://github.com/perfact/zodbsync \
     Paste
 
