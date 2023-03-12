@@ -25,5 +25,5 @@ http://localhost:80
 
 * ~~IP-Distribution for containers is not stable.~~
     * ~~This makes it impossbile to tell where haproxy is running.~~
-* Postgres isn't prepared with a database on startup
+* ~~Postgres isn't prepared with a database on startup~~
 * Many more. Keep adding to this list by opening issues please

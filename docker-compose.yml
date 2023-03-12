@@ -35,6 +35,7 @@ services:
       - LANG=en_US.utf8
       - POSTGRES_USER=dockerzope
       - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=dockerzope
       - POSTGRES_HOST_AUTH_METHOD=trust
       - PGDATA=/vol/data
     ports:

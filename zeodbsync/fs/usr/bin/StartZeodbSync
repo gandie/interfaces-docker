@@ -1,10 +1,12 @@
 #! /usr/bin/python3
+import os
 import threading
 import subprocess
 from time import sleep
 
 
 ZOPEREPO_PATH = "/vol/zoperepo"
+ZOPEROOT_PATH = os.path.join(ZOPEREPO_PATH, '__root__')
 
 
 programs = [
@@ -43,7 +45,31 @@ def print_networkinfo():
     subprocess.run(['ip', 'a'])
 
 
+def create_zope_objects():
+    print('\n\nChecking for missing Zope-Objects...')
+    default_objects = "/root/default_zope_objects/"
+    target_elements = [
+        'composedb',
+    ]
+    changes = False
+
+    for target_element in target_elements:
+        zope_path = os.path.join(ZOPEROOT_PATH, target_element)
+        if not os.path.isdir(zope_path):
+            print(f'\n{target_element} missing! Adding it...')
+            
+            default_path = os.path.join(default_objects, target_element)
+            subprocess.run(['cp', default_path, zope_path, '-R'])
+            changes = True
+    
+    if changes:
+        print('Playing back zope objects...')
+        subprocess.run([
+            'zodbsync', 'playback', '--override' ,'/'])
+
+
 if __name__ == '__main__':
     print_networkinfo()
     create_dirs()
     run_programms()
+    create_zope_objects()
