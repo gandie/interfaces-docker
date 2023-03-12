@@ -1,6 +1,8 @@
 version: "3.7"
 
 networks:
+  host:
+    driver: bridge
   backend:
     internal: true
     name: "backend"
@@ -55,7 +57,8 @@ services:
   haproxy:
     build: haproxy
     restart: always
-    expose:
-      - 80
+    ports:
+      - "0.0.0.0:80:80/tcp"
     networks:
       - backend
+      - host

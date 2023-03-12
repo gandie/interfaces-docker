@@ -16,12 +16,14 @@ It's pretty simple
 mkdir mounts
 ./StartZopeCompose
 ```
-After that the instances of the services are reachable via http
+After that the haproxy-service will be available at
+```
+http://localhost:80
+```
 
 ## Known uncomfortabilities waiting to be fixed
 
-* IP-Distribution for containers is not stable.
-    * This makes it impossbile to tell where haproxy is running.
-    * This is why the containers print their network-info on startup
+* ~~IP-Distribution for containers is not stable.~~
+    * ~~This makes it impossbile to tell where haproxy is running.~~
 * Postgres isn't prepared with a database on startup
 * Many more. Keep adding to this list by opening issues please
