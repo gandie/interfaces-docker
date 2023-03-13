@@ -7,7 +7,7 @@ from time import sleep
 
 WSGI_PATH = "/root/wsgi"
 DEFAULT_CONFIG_DIR_PATH = '/root/default_config'
-USER_CONFIG_DIR_PATH = "/vol/config"
+USER_CONFIG_DIR_PATH = "/vol/zope_config"
 ZOPEINI_PATH = os.path.join(WSGI_PATH, 'etc/zope.ini')
 ZOPECONF_PATH = os.path.join(WSGI_PATH, 'etc/zope.conf')
 
