@@ -1,84 +1,17 @@
 #! /usr/bin/python3
 import os
-import threading
-import subprocess
-from time import sleep
-
+import klappson.dockerutils.dockerutils as utils
 
 WSGI_PATH = "/root/wsgi"
-DEFAULT_CONFIG_DIR_PATH = '/root/default_config'
-USER_CONFIG_DIR_PATH = "/vol/zope_config"
 ZOPEINI_PATH = os.path.join(WSGI_PATH, 'etc/zope.ini')
 ZOPECONF_PATH = os.path.join(WSGI_PATH, 'etc/zope.conf')
 
-
-programs = [
+setup = utils.ContainerSetup("zope")
+setup.programs = [
     ['runwsgi', ZOPEINI_PATH],
 ]
-def run_programms():
-    print("\n\nCalling Binaries...")
 
-    magic_number = 3
-    for program in programs:
-        print(f'\nStarting "{" ".join(program)}"')
-        threading.Thread(
-            target=subprocess.run,
-            kwargs={'args': program},
-            name=' '.join(program),
-            daemon=False,
-        ).start()
-        sleep(magic_number)
-
-
-mkdirs = [
-    USER_CONFIG_DIR_PATH,
-]
-def create_dirs():
-    for mkdir in mkdirs:
-        print(f'Creating dir {mkdir}')
-        subprocess.run(
-            ['mkdir', '-p', mkdir]
-        )
-
-
-config_symlinks = [
-    {
-        'default': os.path.join(DEFAULT_CONFIG_DIR_PATH, 'zope.ini'),
-        'user_copy': os.path.join(USER_CONFIG_DIR_PATH, 'zope.ini'),
-        'symlink': ZOPEINI_PATH
-    },
-    {
-        'default': os.path.join(DEFAULT_CONFIG_DIR_PATH, 'zope.conf'),
-        'user_copy': os.path.join(USER_CONFIG_DIR_PATH, 'zope.conf'),
-        'symlink': ZOPECONF_PATH
-    },
-]
-def mk_symlinks():
-    for symconf in config_symlinks:
-        if os.path.isfile(symconf['symlink']):
-            print(f"Symlink {symconf['symlink']} exists... removing it!")
-            subprocess.run(['rm', '-f', symconf['symlink']])
-
-        if not os.path.isfile(symconf['user_copy']):
-            print(f"Usercopy {symconf['user_copy']} missing... creating it!")
-            subprocess.run(['cp', symconf['default'], symconf['user_copy']])
-
-        print(f"Creating symlink {symconf['symlink']} → {symconf['user_copy']}")
-        subprocess.run(['ln', '-s', symconf['user_copy'], symconf['symlink']])
-
-
-def print_networkinfo():
-    subprocess.run(['ip', 'a'])
-
+setup.symlinks = setup.generate_userconfigs()
 
 if __name__ == '__main__':
-    print_networkinfo()
-
-    print('\nCreating dirs...')
-    create_dirs()
-
-    print('\nCreating usercopies and symlinks...')
-    mk_symlinks()
-
-    print('\nCalling binaries...')
-    run_programms()
+    setup.setup()

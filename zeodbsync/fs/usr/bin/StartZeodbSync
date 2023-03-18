@@ -1,49 +1,23 @@
 #! /usr/bin/python3
 import os
-import threading
 import subprocess
-from time import sleep
+import klappson.dockerutils.dockerutils as utils
 
 
 ZOPEREPO_PATH = "/vol/zoperepo"
 ZOPEROOT_PATH = os.path.join(ZOPEREPO_PATH, '__root__')
 
+setup = utils.ContainerSetup("zeodbsync")
 
-programs = [
+setup.programs = [
     ['zeo/bin/zeoctl', 'start'],
     ['zodbsync', 'playback', '--override', '/'],
     ['zodbsync', 'watch'],
 ]
-def run_programms():
-    print("\n\nCalling Binaries...")
 
-    magic_number = 3
-    for program in programs:
-        print(f'\nStarting "{" ".join(program)}"')
-        threading.Thread(
-            target=subprocess.run,
-            kwargs={'args': program},
-            name=' '.join(program),
-            daemon=False,
-        ).start()
-        sleep(magic_number)
-
-
-mkdirs = [
+setup.mount_dirs = [
     ZOPEREPO_PATH,
 ]
-def create_dirs():
-    print("\n\nCreating dirs...")
-    for mkdir in mkdirs:
-        print(f'Creating "{mkdir}"')
-        subprocess.run(
-            ['mkdir', '-p', mkdir]
-        )
-
-
-def print_networkinfo():
-    subprocess.run(['ip', 'a'])
-
 
 def create_zope_objects():
     print('\n\nChecking for missing Zope-Objects...')
@@ -69,7 +43,5 @@ def create_zope_objects():
 
 
 if __name__ == '__main__':
-    print_networkinfo()
-    create_dirs()
-    run_programms()
+    setup.setup()
     create_zope_objects()

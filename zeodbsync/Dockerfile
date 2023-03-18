@@ -19,6 +19,7 @@ RUN pip3 install zope \
     Products.MailHost \
     git+https://github.com/perfact/ZPsycopgDA \
     git+https://github.com/perfact/zodbsync \
+    git+https://loc.kplays.de:8080/Python/dockerutils.git \
     Paste
 
 COPY fs/ /
