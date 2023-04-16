@@ -21,6 +21,7 @@ RUN pip3 install zope \
     git+https://loc.kplays.de:8080/Python/dockerutils.git \
     zope.mkzeoinstance \
     Paste \
+    jsonpath-ng \
     mediapipe==0.9.1.0
 
 COPY fs/ /
