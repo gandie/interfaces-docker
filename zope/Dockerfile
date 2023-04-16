@@ -6,7 +6,8 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
         python3-pip \
         git \
         iproute2 \
-        tree -y
+        tree \
+        ffmpeg -y
 
 RUN pip3 install zope \
     psycopg2-binary \
