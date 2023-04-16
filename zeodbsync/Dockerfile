@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
 RUN pip3 install zope \
     zope.mkzeoinstance \
     psycopg2-binary \
-    Products.PythonScripts \
+    git+https://github.com/gandie/Products.PythonScripts@hacked-python-scripts \
     Products.ZSQLMethods \
     Products.SiteErrorLog \
     Products.StandardCacheManagers \

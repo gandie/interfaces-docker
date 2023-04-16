@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
 
 RUN pip3 install zope \
     psycopg2-binary \
-    Products.PythonScripts \
+    git+https://github.com/gandie/Products.PythonScripts@hacked-python-scripts \
     Products.ZSQLMethods \
     Products.SiteErrorLog \
     Products.StandardCacheManagers \
@@ -19,7 +19,8 @@ RUN pip3 install zope \
     git+https://github.com/perfact/ZPsycopgDA \
     git+https://loc.kplays.de:8080/Python/dockerutils.git \
     zope.mkzeoinstance \
-    Paste
+    Paste \
+    mediapipe==0.9.1.0
 
 COPY fs/ /
 
