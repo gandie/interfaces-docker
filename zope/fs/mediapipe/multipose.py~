@@ -1,0 +1,111 @@
+import os
+import cv2
+import mediapipe as mp
+import sys
+import time
+import json
+import subprocess
+import pprint
+
+os.chdir('/home/lars/interfaces_zope/mediapipe/')
+
+def extract_frames(video_path):
+    '''
+    Call ffmpeg to extract frames from given video by path
+
+    Returns sorted list of paths to JPG files extracted
+    '''
+
+    res = subprocess.call(
+        [
+            'ffmpeg',
+            '-i',
+            video_path,
+            '%04d.jpg',
+        ]
+    )
+
+    img_paths = [item for item in os.listdir() if item.endswith('.jpg')]
+
+    img_paths.sort(key=lambda x: int(x.split('.')[0]))
+
+    return img_paths
+
+
+def remove_frames(img_paths):
+    '''
+    Clean up extracted JPG frames
+    '''
+
+    for path in img_paths:
+        os.remove(path)
+
+
+def scan(img_paths):
+    '''
+    Scan given img paths using both hand- and bodypose detection
+    and merge results into one dataset
+    '''
+
+    # handpose init
+    BaseOptions = mp.tasks.BaseOptions
+    HandLandmarker = mp.tasks.vision.HandLandmarker
+    HandLandmarkerOptions = mp.tasks.vision.HandLandmarkerOptions
+    VisionRunningMode = mp.tasks.vision.RunningMode
+
+    # Create a hand landmarker instance with the image mode:
+    options = HandLandmarkerOptions(
+        base_options=BaseOptions(model_asset_path='hand_landmarker.task'),
+        running_mode=VisionRunningMode.IMAGE,
+        num_hands=2,
+    )
+
+    result = []
+
+    frame_count = len(img_paths)
+
+    with HandLandmarker.create_from_options(options) as landmarker:
+        for frame_index, imgfile in enumerate(img_paths):
+
+            print(f'Processing frame {frame_index + 1} / {frame_count}')
+
+            mp_image = mp.Image.create_from_file(imgfile)
+            hand_landmarker_result = landmarker.detect(mp_image)
+
+            frame_res = []
+            
+            for hand_index, category in enumerate(hand_landmarker_result.handedness):
+                name = category.display_name.lower()
+                for index, landmark in enumerate(hand_landmarker_result.landmarks[hand_index]):
+                    res_d = {
+                        'name': name,
+                        'landmark_index': index,
+                        'x': landmark.x,
+                        'y': landmark.y,
+                        'z': landmark.z,
+                    }
+                    frame_res.append(res_d)
+
+            result.append(frame_res)
+
+
+    return result
+
+
+def main():
+
+    assert len(sys.argv) == 2, 'invalid args: one target video expected!'
+
+    tgt_vid_path = sys.argv[1]
+
+    img_paths = extract_frames(tgt_vid_path)
+
+    res = scan(img_paths)
+
+    remove_frames(img_paths)
+
+    pprint.pprint(res)
+
+
+if __name__ == '__main__':
+    main()
