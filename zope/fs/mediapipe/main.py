@@ -10,7 +10,7 @@ start = time.time()
 
 assert len(sys.argv) == 2, 'invalid args'
 
-os.chdir('/home/lars/interfaces_zope/mediapipe/')
+os.chdir('/mediapipe')
 
 target_file = sys.argv[1]
 

@@ -9,7 +9,7 @@ import pprint
 
 start = time.time()
 
-os.chdir('/home/lars/interfaces_zope/mediapipe/')
+os.chdir('/mediapipe')
 
 assert len(sys.argv) == 2, 'invalid args'
 
