@@ -1,0 +1,13 @@
+[
+    ('args', "choreo_name=None, choreo_author=None, choreotype_name=None, include_rawdata=False, choreo_id=None, mode='json'"),
+    ('bindings', [
+        ('name_container', 'container'),
+        ('name_context', 'context'),
+        ('name_m_self', 'script'),
+        ('name_subpath', 'traverse_subpath'),
+    ]),
+    ('proxy_roles', [
+    ]),
+    ('title', ''),
+    ('type', 'Script (Python)'),
+]

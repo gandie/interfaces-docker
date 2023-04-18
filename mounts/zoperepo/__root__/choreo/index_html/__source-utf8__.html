@@ -1,0 +1,114 @@
+<p metal:use-macro="context/master_pt/macros/std_page">
+    <div metal:fill-slot="std_body">
+        <script src="custom_js"></script>
+        <h1>Interfaces DB</h1>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index_html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Choreo</li>
+          </ol>
+        </nav>
+
+        <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary" id="start_upload" type="button">Upload JSON file</button>
+            <button class="btn btn-primary" id="start_video_upload" type="button">Upload video file</button>
+        </div>
+
+        <div id="table_stage">
+        </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="upload_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Upload to database</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+            <label for="json_file" class="form-label">JSON file</label>
+            <input type="file" class="form-control" id="json_file" placeholder="JSON file">
+        </div>
+        <div class="mb-3">
+            <label for="choreo_name" class="form-label">Choreo Name</label>
+            <input type="text" class="form-control" id="choreo_name" placeholder="choreo name">
+        </div>
+        <div class="mb-3">
+            <label for="choreo_author" class="form-label">Choreo Author</label>
+            <input type="text" class="form-control" id="choreo_author" placeholder="choreo author">
+        </div>
+        <div class="mb-3">
+
+            <label for="choreo_type" class="form-label">Choreo Type</label>
+
+            <select id="choreo_type" class="form-select" aria-label="Choreo Type">
+                <option selected value="3">Generic JSON</option>
+                <option value="1">tensorflowjs-movenet</option>
+                <option value="2">tensorflowjs-blazepose</option>
+            </select>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abort</button>
+        <button type="button" class="btn btn-primary" id="upload_btn">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="video_upload_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Upload video for processing</h5>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+            <label for="json_file" class="form-label">Video file</label>
+            <input type="file" class="form-control" id="video_file" placeholder="video file">
+        </div>
+        <div class="mb-3">
+            <label for="video_choreo_name" class="form-label">Choreo Name</label>
+            <input type="text" class="form-control" id="video_choreo_name" placeholder="choreo name">
+        </div>
+        <div class="mb-3">
+            <label for="video_choreo_author" class="form-label">Choreo Author</label>
+            <input type="text" class="form-control" id="video_choreo_author" placeholder="choreo author">
+        </div>
+        <div class="mb-3">
+
+            <label for="video_choreo_type" class="form-label">Choreo Type</label>
+
+            <select id="video_choreo_type" class="form-select" aria-label="Choreo Type">
+                <option selected value="4">python-mediapipe-perframe-blazepose</option>
+                <option value="3">Generic JSON</option>
+            </select>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="alert alert-danger align-items-center" role="alert">
+            <div>
+                Attention! Video processing may take a LONG time. Consider scaling down your video for smaller file uploads.
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="video_abort_btn">Abort</button>
+        <button type="button" class="btn btn-primary" id="video_upload_btn">
+            <span id="upload_label">Upload</span>
+            <span id="video_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
+</p>

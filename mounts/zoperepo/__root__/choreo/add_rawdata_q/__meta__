@@ -1,0 +1,14 @@
+[
+    ('advanced', [
+        ('cache_time', 0),
+        ('class_file', ''),
+        ('class_name', ''),
+        ('connection_hook', None),
+        ('max_cache', 100),
+        ('max_rows', 1000),
+    ]),
+    ('args', 'rawdata'),
+    ('connection_id', 'composedb'),
+    ('title', ''),
+    ('type', 'Z SQL Method'),
+]

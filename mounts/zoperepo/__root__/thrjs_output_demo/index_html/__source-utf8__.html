@@ -1,0 +1,70 @@
+<p metal:use-macro="context/master_pt/macros/std_page">
+    <div metal:fill-slot="std_body">
+
+        <h1>ThreeJS output viewer</h1>
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index_html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Threejs output viewer</li>
+          </ol>
+        </nav>
+        
+        <div class="input-group">
+            <label class="input-group-text" for="choreo_id">Record</label>
+            <select class="form-select" id="choreo_id" aria-label="Example select with button addon">
+            </select>
+            <label class="input-group-text" for="jsonpath">jsonPath</label>
+            <input id="jsonpath" type="text" class="form-control" placeholder="$[*]" aria-label="jsonPath">
+
+            <label class="input-group-text" for="scalex">scalex</label>
+            <input id="scalex" type="number" class="form-control" placeholder="1" value="-3" step="0.01" aria-label="scalex">
+
+            <label class="input-group-text" for="scaley">scaley</label>
+            <input id="scaley" type="number" class="form-control" placeholder="1" value="-3" step="0.01" aria-label="scaley">
+
+            <label class="input-group-text" for="scalez">scalez</label>
+            <input id="scalez" type="number" class="form-control" placeholder="1" value="-3" step="0.01" aria-label="scalez">
+
+            <label class="input-group-text" for="fps">fps</label>
+            <input id="run_fps" type="number" class="form-control" min="1" max="100" value="30" placeholder="30" aria-label="fps">
+
+            <button id="view_btn" class="btn btn-outline-secondary" type="button">View JSON</button>
+            <button id="run_btn" class="btn btn-outline-secondary" type="button">Run</button>
+        </div>
+        
+        <div id="container"></div>
+                
+        <script async src="./lib/js/es_module_js"></script>
+        
+        <script type="importmap">
+          {
+            "imports": {
+              "three": "./lib/threejs_master/build/three.module.js",
+              "three/addons/": "./lib/threejs_master/examples/jsm/"
+            }
+          }
+        </script>
+		<script type="module" src="custom_js"></script>
+        
+<div class="modal fade" id="json_pp_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">JSON pretty print</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre id="json_pp_stage"></pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </div>
+</p>

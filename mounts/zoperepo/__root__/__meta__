@@ -1,0 +1,178 @@
+[
+    ('is_root', True),
+    ('perms', [
+        ('Access contents information', False, [
+            'Anonymous',
+            'Manager',
+        ]),
+        ('Add Accelerated HTTP Cache Managers', False, [
+            'Manager',
+        ]),
+        ('Add Database Methods', False, [
+            'Manager',
+        ]),
+        ('Add Documents, Images, and Files', False, [
+            'Manager',
+        ]),
+        ('Add External Methods', False, [
+            'Manager',
+        ]),
+        ('Add Folders', False, [
+            'Manager',
+        ]),
+        ('Add MailHost objects', False, [
+            'Manager',
+        ]),
+        ('Add Page Templates', False, [
+            'Manager',
+        ]),
+        ('Add Python Scripts', False, [
+            'Manager',
+        ]),
+        ('Add RAM Cache Managers', False, [
+            'Manager',
+        ]),
+        ('Add Site Roots', False, [
+            'Manager',
+        ]),
+        ('Add User Folders', False, [
+            'Manager',
+        ]),
+        ('Add Virtual Host Monsters', False, [
+            'Manager',
+        ]),
+        ('Add Z Psycopg 2 Database Connections', False, [
+            'Manager',
+        ]),
+        ('Change DTML Documents', False, [
+            'Manager',
+        ]),
+        ('Change DTML Methods', False, [
+            'Manager',
+        ]),
+        ('Change Database Connections', False, [
+            'Manager',
+        ]),
+        ('Change Database Methods', False, [
+            'Manager',
+        ]),
+        ('Change External Methods', False, [
+            'Manager',
+        ]),
+        ('Change Images and Files', False, [
+            'Manager',
+        ]),
+        ('Change Lock Information', False, [
+            'Manager',
+        ]),
+        ('Change Page Templates', False, [
+            'Manager',
+        ]),
+        ('Change Python Scripts', False, [
+            'Manager',
+        ]),
+        ('Change bindings', False, [
+            'Manager',
+        ]),
+        ('Change cache managers', False, [
+            'Manager',
+        ]),
+        ('Change cache settings', False, [
+            'Manager',
+        ]),
+        ('Change configuration', False, [
+            'Manager',
+        ]),
+        ('Change permissions', False, [
+            'Manager',
+        ]),
+        ('Change proxy roles', False, [
+            'Manager',
+        ]),
+        ('Copy or Move', False, [
+            'Anonymous',
+            'Manager',
+        ]),
+        ('Define permissions', False, [
+            'Manager',
+        ]),
+        ('Delete objects', False, [
+            'Manager',
+        ]),
+        ('FTP access', False, [
+            'Manager',
+        ]),
+        ('Import/Export objects', False, [
+            'Manager',
+        ]),
+        ('Log Site Errors', False, [
+            'Manager',
+        ]),
+        ('Log to the Event Log', False, [
+            'Manager',
+        ]),
+        ('Manage Five local sites', False, [
+            'Manager',
+        ]),
+        ('Manage Site', False, [
+            'Manager',
+        ]),
+        ('Manage WebDAV Locks', False, [
+            'Manager',
+        ]),
+        ('Manage properties', False, [
+            'Manager',
+        ]),
+        ('Manage users', False, [
+            'Manager',
+        ]),
+        ('Open/Close Database Connection', False, [
+            'Manager',
+        ]),
+        ('Private, only accessible from trusted code', False, [
+        ]),
+        ('Public, everyone can access', False, [
+            'Anonymous',
+        ]),
+        ('Take ownership', False, [
+            'Owner',
+        ]),
+        ('Test Database Connections', False, [
+            'Manager',
+        ]),
+        ('Undo changes', False, [
+            'Manager',
+        ]),
+        ('Use Database Methods', False, [
+            'Anonymous',
+            'Manager',
+        ]),
+        ('Use mailhost services', False, [
+            'Manager',
+        ]),
+        ('View', False, [
+            'Anonymous',
+            'Manager',
+        ]),
+        ('View History', False, [
+            'Manager',
+        ]),
+        ('View management screens', False, [
+            'Manager',
+        ]),
+        ('WebDAV Lock items', False, [
+            'Manager',
+            'Owner',
+        ]),
+        ('WebDAV Unlock items', False, [
+            'Manager',
+            'Owner',
+        ]),
+        ('WebDAV access', False, [
+            'Authenticated',
+            'Manager',
+        ]),
+    ]),
+    ('title', 'Zope'),
+    ('type', 'Folder'),
+]

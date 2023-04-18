@@ -1,0 +1,9 @@
+[
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'text/html')],
+        [('id', 'expand'), ('type', 'boolean'), ('value', 0)],
+        [('id', 'output_encoding'), ('type', 'string'), ('value', 'utf-8')],
+    ]),
+    ('title', ''),
+    ('type', 'Page Template'),
+]

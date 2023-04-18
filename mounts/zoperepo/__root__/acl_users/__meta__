@@ -1,0 +1,7 @@
+[
+    ('title', 'User Folder'),
+    ('type', 'User Folder'),
+    ('users', [
+        ('dockerzope', b'{SHA}jLIjfQZ5yojbZGTqxg2pY0VROWQ=', ('Manager', ), ()),
+    ]),
+]

@@ -1,0 +1,24 @@
+<html metal:define-macro="std_page">
+  <head>
+    <title tal:content="template/title">Interfaces</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0, user-scalable=no" />
+
+    <link href="lib/css/bootstrap_css" rel="stylesheet"/>
+    <script src="lib/js/bootstrap_js"></script>
+
+    <script src="lib/js/handlebars_js"></script>
+
+    <script src="lib/js/custom_tools_js"></script>
+
+    <script src="lib/js/jquery-3.6.3.min.js"></script>
+    <script src="lib/js/p5.min.js"></script>
+
+  </head>
+  <body>
+      <a href="/index_html">
+          <img src="lib/assets/img/logo" width="50px" height="50px"></img>
+      </a>
+      <div metal:define-slot="std_body"></div>
+  </body>
+</html>

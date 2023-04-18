@@ -1,0 +1,13 @@
+[
+    ('args', 'name, type_id, author, rawdata'),
+    ('bindings', [
+        ('name_container', 'container'),
+        ('name_context', 'context'),
+        ('name_m_self', 'script'),
+        ('name_subpath', 'traverse_subpath'),
+    ]),
+    ('proxy_roles', [
+    ]),
+    ('title', 'Choreo API insert method'),
+    ('type', 'Script (Python)'),
+]

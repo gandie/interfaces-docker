@@ -1,0 +1,29 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Type</th>
+      <th scope="col">Modtime</th>
+      <th scope="col">Download / Filter</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each choreos}}
+    <tr>
+      <th scope="row">{{this.choreo_id}}</th>
+      <td>{{this.choreo_name}}</td>
+      <td>{{this.choreo_author}}</td>
+      <td>{{this.choreotype_name}}</td>
+      <td>{{this.choreo_modtime}}</td>
+      <td>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Optional jsonPATH filter, e.g. : $[*]" aria-label="jsonPath filter">
+            <button class="btn btn-outline-secondary" type="button" data-choreoid="{{this.choreo_id}}" onclick="choreo_download(event)">Download</button>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

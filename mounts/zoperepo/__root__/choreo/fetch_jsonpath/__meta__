@@ -1,0 +1,13 @@
+[
+    ('args', "choreo_id, jsonpath_expr=''"),
+    ('bindings', [
+        ('name_container', 'container'),
+        ('name_context', 'context'),
+        ('name_m_self', 'script'),
+        ('name_subpath', 'traverse_subpath'),
+    ]),
+    ('proxy_roles', [
+    ]),
+    ('title', ''),
+    ('type', 'Script (Python)'),
+]

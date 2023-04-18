@@ -1,0 +1,11 @@
+[
+    ('autocommit', False),
+    ('connection_string', "host='postgres' user=dockerzope password=12345 dbname=dockerzope port=5432"),
+    ('encoding', ''),
+    ('owner', (['acl_users'], 'dockerzope')),
+    ('readonlymode', False),
+    ('tilevel', 1),
+    ('title', 'compose_postgres'),
+    ('type', 'Z Psycopg 2 Database Connection'),
+    ('zdatetime', None),
+]
