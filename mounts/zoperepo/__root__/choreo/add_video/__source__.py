@@ -9,7 +9,7 @@ with open(
 subprocess.run(
     [
         'python3',
-        '/mediapipe/main.py',
+        '/mediapipe/multipose.py',
         '/mediapipe/inputvideo.mp4',
     ]
 )
@@ -17,7 +17,7 @@ subprocess.run(
 res = subprocess.run(
     [
         'cat',
-        '/mediapipe/dump.json',
+        '/mediapipe/multipose_dump.json',
     ],
     capture_output=True
 )

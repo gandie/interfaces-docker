@@ -71,7 +71,6 @@ $(function() {
         let json_file = $("#json_file")[0].files[0]
 
         let json = ""
-        //console.log(json_file)
         
         let fileReader = new FileReader()
         fileReader.onload = function () {
@@ -102,22 +101,6 @@ $(function() {
                     modal.hide()
                 }
             });
-
-            /*
-            $.post(
-                "add",
-                {
-                    name: choreo_name,
-                    type_id: choreo_type,
-                    author: choreo_author,
-                    rawdata: json
-                },
-                function( data ) {
-                    $(document).trigger("choreo-table-load")
-                    modal.hide()
-                },
-            );
-            */
         }
         fileReader.readAsText(json_file)
     })

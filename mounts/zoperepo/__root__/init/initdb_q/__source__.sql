@@ -27,3 +27,4 @@ insert into choreotype (choreotype_name) values ('tensorflowjs-movenet');
 insert into choreotype (choreotype_name) values ('tensorflowjs-blazepose');
 insert into choreotype (choreotype_name) values ('generic-json');
 insert into choreotype (choreotype_name) values ('python-mediapipe-perframe-blazepose');
+insert into choreotype (choreotype_name) values ('python-mediapipe-perframe-multipose');

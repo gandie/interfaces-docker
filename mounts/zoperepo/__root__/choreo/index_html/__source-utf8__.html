@@ -85,8 +85,7 @@
             <label for="video_choreo_type" class="form-label">Choreo Type</label>
 
             <select id="video_choreo_type" class="form-select" aria-label="Choreo Type">
-                <option selected value="4">python-mediapipe-perframe-blazepose</option>
-                <option value="3">Generic JSON</option>
+                <option selected value="5">python-mediapipe-perframe-multipose</option>
             </select>
 
         </div>
@@ -94,13 +93,15 @@
       <div class="modal-footer">
         <div class="alert alert-danger align-items-center" role="alert">
             <div>
-                Attention! Video processing may take a LONG time. Consider scaling down your video for smaller file uploads.
+                Attention! Video processing may take a LONG time.
+                You can estimate a processing speed of 2-3 frames/second plus
+                upload time.
             </div>
         </div>
 
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="video_abort_btn">Abort</button>
         <button type="button" class="btn btn-primary" id="video_upload_btn">
-            <span id="upload_label">Upload</span>
+            <span id="upload_label">Upload & process</span>
             <span id="video_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
       </div>
