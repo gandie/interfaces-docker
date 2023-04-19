@@ -17,6 +17,23 @@ $(function() {
     var video_myModalEl = document.querySelector('#video_upload_modal')
     var video_modal = bootstrap.Modal.getOrCreateInstance(video_myModalEl)
 
+    $("#init_db").click(function(event) {
+        let conf = confirm(
+            "Warning! Database will be rebuilt! All existing data will be LOST!"
+        )
+        if (conf) {
+            $.get(
+                "db_init_wrapper",
+                function(data) {
+                    alert(data)
+                    $(document).trigger("choreo-table-load")
+                }
+            )
+        } else {
+            alert("Aborted.")
+        }
+    })
+
     $("#start_upload").click(function(event) {
         modal.show()
     })
@@ -105,7 +122,6 @@ $(function() {
         fileReader.readAsText(json_file)
     })
 
-    console.log("Hello World!")
     $.get(
         "choreo_table_pt",
         function(data) {
