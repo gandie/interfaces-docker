@@ -7,7 +7,7 @@ import json
 import subprocess
 import pprint
 
-# os.chdir('/mediapipe')
+os.chdir('/mediapipe')
 
 def extract_frames(video_path):
     '''
