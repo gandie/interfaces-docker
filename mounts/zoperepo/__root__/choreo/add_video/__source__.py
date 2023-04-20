@@ -9,7 +9,7 @@ with open(
 subprocess.run(
     [
         'python3',
-        '/mediapipe/multipose.py',
+        '/mediapipe/holistic_scan.py',
         '/mediapipe/inputvideo.mp4',
     ]
 )
@@ -17,7 +17,7 @@ subprocess.run(
 res = subprocess.run(
     [
         'cat',
-        '/mediapipe/multipose_dump.json',
+        '/mediapipe/holistic_dump.json',
     ],
     capture_output=True
 )

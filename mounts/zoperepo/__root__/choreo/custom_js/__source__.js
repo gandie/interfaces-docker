@@ -73,8 +73,11 @@ $(function() {
                 $(document).trigger("choreo-table-load")
                 video_modal.hide()
             },
-            error: function() {
-                alert("something went wrong!")
+            error: function(req, status, err) {
+                alert("something went wrong: " + status + " " + err)
+                console.log(req)
+                console.log(status)
+                console.log(err)
                 video_modal.hide()
             }
         });
