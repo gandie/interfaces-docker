@@ -1,0 +1,14 @@
+#! /bin/bash
+
+# stop running instllation and remove containers
+docker-compose --project-name "zope-compose" down
+
+# not neccessary!
+# containers should already be deleted
+# make sure to clear all containers
+# docker rm $(docker ps -a -q)
+
+# delete all images
+docker rmi $(docker images -q)
+
+echo "Done. Everything cleaned up. You may run StartZopeCompose now"
