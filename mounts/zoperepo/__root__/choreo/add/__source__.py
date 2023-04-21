@@ -1,4 +1,5 @@
-assert name, 'Invalid name!'
+if not name:
+    name = 'Unknown_Choreo'
 
 rawdata_id = context.add_rawdata_q(
     rawdata=rawdata,
