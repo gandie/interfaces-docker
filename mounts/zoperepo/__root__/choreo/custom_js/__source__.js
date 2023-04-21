@@ -45,16 +45,21 @@ $(function() {
     })
 
     $("#video_upload_btn").click(function(event) {
-        
-        $("#video_upload_btn").prop("disabled", true)
-        $("#video_abort_btn").prop("disabled", true)
-        $("#video_loading").show()
-        
+
         let choreo_name = $("#video_choreo_name").val()
         let choreo_author = $("#video_choreo_author").val()
         let choreo_type = $("#video_choreo_type").val()
         let video_file = $("#video_file")[0].files[0]
         
+        if (!choreo_name || !choreo_author || !choreo_type || !video_file) {
+            alert("Please fill all fields")
+            return
+        }
+
+        $("#video_upload_btn").prop("disabled", true)
+        $("#video_abort_btn").prop("disabled", true)
+        $("#video_loading").show()
+
         let formData = new FormData()
         formData.append('video_file', video_file)
         formData.append('name', choreo_name)
@@ -89,6 +94,11 @@ $(function() {
         let choreo_author = $("#choreo_author").val()
         let choreo_type = $("#choreo_type").val()
         let json_file = $("#json_file")[0].files[0]
+
+        if (!choreo_name || !choreo_author || !choreo_type || !json_file) {
+            alert("Please fill all fields")
+            return
+        }
 
         let json = ""
         
