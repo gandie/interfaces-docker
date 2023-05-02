@@ -1,0 +1,52 @@
+<p metal:use-macro="context/master_pt/macros/std_page">
+  <div metal:fill-slot="std_body">
+
+    <script src="/lib/js/codemirror.js"></script>
+    <link rel="stylesheet" href="/lib/css/codemirror.css">
+    <script src="/lib/js/javascript.js"></script>
+	<script src="custom_js"></script>
+
+    <h1>p5js playground</h1>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index_html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">p5js playground</li>
+      </ol>
+    </nav>
+
+    <h4>Data / Code controls</h4>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="choreo_id">Record to use as DATA</label>
+        <select class="form-select" id="choreo_id" aria-label="Record to use as DATA">
+        </select>
+        <label class="input-group-text" for="jsonpath">jsonPath</label>
+        <input id="jsonpath" type="text" class="form-control" value="$[*]" aria-label="jsonPath">
+        <button class="btn btn-outline-secondary" id="run_code" type="button">Run code</button>
+
+    </div>
+
+    <h4>Code import / export</h4>
+    <div class="input-group mb-3">
+
+        <input id="import_file" type="file" class="form-control" aria-label="jsonPath">
+        <button class="btn btn-outline-secondary" id="import_code" type="button">Import code</button>
+
+        <button class="btn btn-outline-secondary" id="download_code" type="button">Download code</button>
+
+    </div>
+
+    <h4>Result image download</h4>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" id="download_svg" type="button">Download SVG</button>
+        <button class="btn btn-outline-secondary" id="download_png" type="button">Download PNG</button>
+    </div>
+
+    <h4>p5 stage</h4>
+    <div id="p5_stage"></div>
+
+    <h4>JS editor</h4>
+    <div id="editor"></div>
+
+  </div>
+</p>
