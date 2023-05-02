@@ -79,7 +79,7 @@ $(function() {
                 jsonpath_expr: jsonpath_expr
             },
             function( data ) {
-                $("#json_pp_stage").html(JSON.stringify(data, null, 4))
+                $("#json_pp_stage").html(JSON.stringify(data.choreo_json, null, 4))
                 json_pp_modal.show()
             }
         )
@@ -110,12 +110,11 @@ function init() {
             jsonpath_expr: jsonpath_expr
         },
         function( data ) {
-            console.log(data)
-            choreo_data = data
+            choreo_data = data.choreo_json
             loaded = true
 
-            for (let i = 0; i < data.length; i++) {
-                let val = data[i]
+            for (let i = 0; i < data.choreo_json.length; i++) {
+                let val = data.choreo_json[i]
                 if (val) {
                     if (num_nodes < val.length) {
                         num_nodes = val.length

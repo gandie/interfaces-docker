@@ -161,7 +161,8 @@ function choreo_download(event) {
             function(data) {
                 let raw_json = data.choreos[0].rawdata_json
                 let choreo_name = data.choreos[0].choreo_name
-                downloadObjectAsJson(raw_json, choreo_name)
+                let choreo_author = data.choreos[0].choreo_author
+                downloadObjectAsJson(raw_json, choreo_name + "_by_" + choreo_author)
             }
         )
     } else {
@@ -172,7 +173,7 @@ function choreo_download(event) {
                 jsonpath_expr: jsonPath
             },
             function(data) {
-                downloadObjectAsJson(data, 'filtered')
+                downloadObjectAsJson(data.choreo_json, data.name + "_by_" + data.author)
             }
         )        
     }

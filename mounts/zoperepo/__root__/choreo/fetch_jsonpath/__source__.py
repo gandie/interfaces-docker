@@ -14,5 +14,11 @@ jsonpath_expr = parse(jsonpath_expr)
 
 matches = [match.value for match in jsonpath_expr.find(choreo_json)]
 
+result = {
+    'choreo_json': matches,
+    'name': res['choreo_name'],
+    'author': res['choreo_author'],
+}
+
 context.REQUEST.response.setHeader('Content-Type', 'application/json')
-return json.dumps(matches)
+return json.dumps(result)

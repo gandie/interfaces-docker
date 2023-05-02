@@ -89,7 +89,7 @@ $(function() {
                 jsonpath_expr: jsonpath_expr
             },
             function( data ) {
-                DATA = data
+                DATA = data.choreo_json
 
                 let jscode = myCodeMirror.getValue()
         
