@@ -4,6 +4,7 @@
     <script src="/lib/js/codemirror.js"></script>
     <link rel="stylesheet" href="/lib/css/codemirror.css">
     <script src="/lib/js/javascript.js"></script>
+	<script src="examples_js"></script>
 	<script src="custom_js"></script>
 
     <h1>p5js playground</h1>
@@ -31,6 +32,13 @@
 
         <input id="import_file" type="file" class="form-control" aria-label="jsonPath">
         <button class="btn btn-outline-secondary" id="import_code" type="button">Import code</button>
+
+        <label class="input-group-text" for="example_chooser">Examples</label>
+        <select class="form-select" id="example_chooser">
+            <option value="template" selected>Basic template</option>
+            <option value="stickman">Stickman example</option>
+            <option value="perlin_replacement">Perlin noise replacement example</option>
+        </select>
 
         <button class="btn btn-outline-secondary" id="download_code" type="button">Download code</button>
 
