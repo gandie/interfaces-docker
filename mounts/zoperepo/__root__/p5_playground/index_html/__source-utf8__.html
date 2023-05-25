@@ -24,6 +24,7 @@
         <label class="input-group-text" for="jsonpath">jsonPath</label>
         <input id="jsonpath" type="text" class="form-control" value="$[*]" aria-label="jsonPath">
         <button class="btn btn-primary" id="run_code" type="button">
+            <i class="fa-solid fa-play"></i>
             <span id="run_label">Run code</span>
             <span id="data_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
@@ -34,7 +35,10 @@
     <div class="input-group mb-3">
 
         <input id="import_file" type="file" class="form-control" aria-label="jsonPath">
-        <button class="btn btn-outline-secondary" id="import_code" type="button">Import code</button>
+        <button class="btn btn-outline-secondary" id="import_code" type="button">
+            <i class="fa-solid fa-file-import"></i>
+            Import code
+        </button>
 
         <label class="input-group-text" for="example_chooser">Examples</label>
         <select class="form-select" id="example_chooser">
@@ -43,14 +47,23 @@
             <option value="perlin_replacement">Perlin noise replacement example</option>
         </select>
 
-        <button class="btn btn-outline-secondary" id="download_code" type="button">Download code</button>
+        <button class="btn btn-outline-secondary" id="download_code" type="button">
+            <i class="fa-solid fa-download"></i>
+            Download code
+        </button>
 
     </div>
 
     <h4>Result image download</h4>
     <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary" id="download_svg" type="button">Download SVG</button>
-        <button class="btn btn-outline-secondary" id="download_png" type="button">Download PNG</button>
+        <button class="btn btn-outline-secondary" id="download_svg" type="button">
+            <i class="fa-solid fa-download"></i>
+            Download SVG
+        </button>
+        <button class="btn btn-outline-secondary" id="download_png" type="button">
+            <i class="fa-solid fa-download"></i>
+            Download PNG
+        </button>
     </div>
 
     <h4>p5 stage</h4>
