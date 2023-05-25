@@ -7,7 +7,7 @@ var perlin_replacement = `// Perlin noise replacement example
 // with choreo data
 
 // simple function to fetch points from choreo record by name
-// from given frame
+// use this as a template to create a function to return joints u desire to use
 function find_by_name(frame, name) {
     for (let joint_index in frame) {
         let joint = frame[joint_index]
@@ -174,6 +174,9 @@ stage = new p5(sketch, 'p5_stage')
 
 var stickman = `// p5js stickman example
 
+// Intended to give an example on how to work with DATA and loop over each
+// frame implicitly via draw()
+
 // Settings
 var FPS = 30
 var SCENE_WIDTH = 1280
@@ -181,6 +184,9 @@ var SCENE_HEIGHT = 720
 
 // derived from
 // https://github.com/google/mediapipe/blob/master/docs/solutions/pose.md
+// we map our joints against connected joints via indexes to draw lines from it
+// feel free to mess around with this mapping to create interesting results,
+// this basically represents the stickman, maybe u want something else?
 var line_map = {
   0 : [1, 4],
   1 : [2],
@@ -206,6 +212,8 @@ var line_map = {
   28: [30, 32],
 }
 
+// basic function to find a joint by index from given frame
+// use this as a template to create a function to return joints u desire to use
 function find_by_bpindex(frame, bpindex) {
   for (let joint_index in frame) {
     let joint = frame[joint_index]
@@ -213,6 +221,7 @@ function find_by_bpindex(frame, bpindex) {
       return joint
     }
   }
+  console.log("Warning! No matching joint found!")
 }
 
 // make sure the following line remains unchanged!
@@ -229,10 +238,12 @@ sketch = function(p) {
 
   p.draw = function() {
 
-    // reset canvas each frame
+    // reset canvas each frame - feel free to remove these two lines
+    // for interesting results
     p.clear()
     p.background('white')
 
+    // fetch current data_chunk aka frame
     let data_chunk = DATA[index]
 
     // early exit data check
@@ -244,6 +255,7 @@ sketch = function(p) {
       return
     }
 
+    // main loop to create stickman from line_map
     for (let first_bpindex in line_map) {
       let point_list = line_map[first_bpindex]
       for (let pindex in point_list) {
@@ -251,10 +263,12 @@ sketch = function(p) {
         let first_point = find_by_bpindex(data_chunk, first_bpindex)
         let second_point = find_by_bpindex(data_chunk, second_bpindex)
   
+        // make sure we've found useful data, skip if not found
         if (!first_point || !second_point) {
           continue
         }
   
+        // make sure to multiply normalized coordinates to get correct coordinates
         let x1 = first_point.x * SCENE_WIDTH
         let x2 = second_point.x * SCENE_WIDTH
         let y1 = first_point.y * SCENE_HEIGHT
@@ -267,8 +281,10 @@ sketch = function(p) {
 
     // loop over DATA via index variable
     if (index > DATA.length) {
+      // no more DATA left, stop draw()-Loop
       p.noLoop()
     } else {
+      // increment index for next run of draw() to create next frame
       index++
     }
 
