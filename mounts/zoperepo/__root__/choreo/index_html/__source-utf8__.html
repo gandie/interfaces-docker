@@ -11,21 +11,25 @@
         </nav>
 
         <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary" id="start_upload" type="button">
+            <button type="button" class="btn btn-success" onclick="start_tut(event)">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Tutorial
+            </button>
+            <button class="btn btn-primary" id="start_upload" type="button" data-tour="step: 2; title: Upload JSON file; content: Open dialogue to upload prepared JSON files. This can be useful when migrating data between Interfaces instances">
                 <i class="fa-solid fa-file-import"></i>
                 Upload JSON file
             </button>
-            <button class="btn btn-primary" id="start_video_upload" type="button">
+            <button class="btn btn-primary" id="start_video_upload" type="button" data-tour="step: 3; title: Server side video processing; content: Upload a video file ( mp4 ) and call server side scanner on it. Make sure to read dialogue infos and best practices to avoid wasting time on broken scans">
                 <i class="fa-solid fa-file-import"></i>
                 Upload video file
             </button>
-            <button class="btn btn-danger" id="init_db" type="button">
+            <button class="btn btn-danger" id="init_db" type="button" data-tour="step: 4; title: Database initialization; content: This button must be clicked once on a fresh instance to initialize the database. Can also be used to fully clear existing databases">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 (Re-)Initialize Database
             </button>
         </div>
 
-        <div id="table_stage">
+        <div id="table_stage" data-tour="step: 1; title: Choreo Database; content: Overview table for choreo records. If you don't see a table here, make sure to initialize the database!">
         </div>
 
 

@@ -1,5 +1,5 @@
 <p metal:use-macro="context/master_pt/macros/std_page">
-  <div metal:fill-slot="std_body">
+  <div data-tour="step: 1; title: Welcome!; content: Welcome to Interfaces Webapp!" metal:fill-slot="std_body">
     <h1>Interfaces</h1>
 
     <nav aria-label="breadcrumb">
@@ -8,11 +8,33 @@
       </ol>
     </nav>
 
-    <a href="tf_live_demo/index_html" class="btn btn-primary">Tensorflow-JS local live processing</a>
-    <a href="tf_upload_demo/index_html" class="btn btn-primary">Tensorflow-JS local video processing</a>
-    <a href="choreo/index_html" class="btn btn-primary">Database</a>
-    <a href="thrjs_output_demo/index_html" class="btn btn-primary">ThreeJS output viewer</a>
-    <a href="p5_playground/index_html" class="btn btn-primary">p5js playground</a>
+    <button type="button" class="btn btn-success" onclick="start_tut(event)">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Start Tour
+    </button>
+
+    <a href="tf_live_demo/index_html" class="btn btn-primary" data-tour="step: 2; title: TensorflowJS live processing; content: Record motion capturing data directly and live via Webcam">
+        Tensorflow-JS local live processing
+    </a>
+    <a href="tf_upload_demo/index_html" class="btn btn-primary" data-tour="step: 3; title: TensorflowJS local video processing; content: Process videos locally in browser without video upload">
+        Tensorflow-JS local video processing
+    </a>
+    <a href="choreo/index_html" class="btn btn-primary" data-tour="step: 4; title: Choreo database; content: Access database functions and server side video processing here">
+        Database
+    </a>
+    <a href="thrjs_output_demo/index_html" class="btn btn-primary" data-tour="step: 5; title: threeJS output viewer; content: Debugging tool to visualize choreo data in 3D space">
+        ThreeJS output viewer
+    </a>
+    <a href="p5_playground/index_html" class="btn btn-primary" data-tour="step: 6; title: p5js playground; content: Run a p5 sketch against records from database">
+        p5js playground
+    </a>
+
+    <script>
+        function start_tut(e) {
+            var tourguide = new Tourguide()
+            tourguide.start()
+        }
+    </script>
 
   </div>
 </p>
