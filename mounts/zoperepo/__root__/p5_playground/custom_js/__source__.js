@@ -34,6 +34,8 @@ $(function() {
 
     $("#run_code").click(function(event) {
 
+        $("#data_loading").show()
+
         if (stage) {
             stage.remove()
         }
@@ -63,6 +65,7 @@ $(function() {
                 oScript.appendChild(oScriptText)
                 document.body.appendChild(oScript)
 
+                $("#data_loading").hide()
             }
         )
     })

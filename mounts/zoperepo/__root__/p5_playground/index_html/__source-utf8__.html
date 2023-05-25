@@ -23,7 +23,10 @@
         </select>
         <label class="input-group-text" for="jsonpath">jsonPath</label>
         <input id="jsonpath" type="text" class="form-control" value="$[*]" aria-label="jsonPath">
-        <button class="btn btn-outline-secondary" id="run_code" type="button">Run code</button>
+        <button class="btn btn-primary" id="run_code" type="button">
+            <span id="run_label">Run code</span>
+            <span id="data_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
 
     </div>
 
