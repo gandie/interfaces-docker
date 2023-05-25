@@ -145,6 +145,26 @@ $(function() {
     )
 });
 
+function choreo_delete(event) {
+    let btn = $(event.target)
+    let choreo_id = btn.data("choreoid")
+
+    if (!confirm("Attention! Choreo will be deleted and cant't be restored!")) {
+        return
+    }
+
+    $.getJSON(
+        "delete",
+        {
+            choreo_id: choreo_id,
+        },
+        function(data) {
+            alert(data.msg)
+            $(document).trigger("choreo-table-load")
+        }
+    )
+}
+
 function choreo_download(event) {
     let btn = $(event.target)
     let choreo_id = btn.data("choreoid")

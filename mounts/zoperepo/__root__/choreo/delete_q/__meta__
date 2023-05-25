@@ -1,0 +1,15 @@
+[
+    ('advanced', [
+        ('cache_time', 0),
+        ('class_file', ''),
+        ('class_name', ''),
+        ('connection_hook', None),
+        ('max_cache', 100),
+        ('max_rows', 1000),
+    ]),
+    ('args', 'choreo_id'),
+    ('connection_id', 'composedb'),
+    ('owner', (['acl_users'], 'dockerzope')),
+    ('title', ''),
+    ('type', 'Z SQL Method'),
+]
