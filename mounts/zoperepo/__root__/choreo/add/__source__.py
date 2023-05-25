@@ -6,9 +6,9 @@ rawdata_id = context.add_rawdata_q(
 )[0][0]
 
 choreo_id = context.add_choreo_q(
-    name=name,
+    name=name.replace(" ", "_"),
     type_id=type_id,
-    author=author,
+    author=author.replace(" ", "_"),
     rawdata_id=rawdata_id,
 )[0][0]
 
