@@ -212,12 +212,34 @@ var line_map = {
   28: [30, 32],
 }
 
+// derived from
+// https://developers.google.com/mediapipe/solutions/vision/hand_landmarker#models
+// same as line_map, but for hands instead of body
+var hand_map = {
+    0 : [1, 5, 17],
+    1 : [2],
+    2 : [3],
+    3 : [4],
+    5 : [6, 9],
+    6 : [7],
+    7 : [8],
+    9 : [10, 13],
+    10: [11],
+    11: [12],
+    13: [14, 17],
+    14: [15],
+    15: [16],
+    17: [18],
+    18: [19],
+    19: [20],
+}
+
 // basic function to find a joint by index from given frame
 // use this as a template to create a function to return joints u desire to use
-function find_by_bpindex(frame, bpindex) {
+function find_by_bpindex(frame, bpindex, joint_type) {
   for (let joint_index in frame) {
     let joint = frame[joint_index]
-    if (joint.index == bpindex) {
+    if ((joint.index == bpindex) && (joint.type == joint_type)) {
       return joint
     }
   }
@@ -255,13 +277,61 @@ sketch = function(p) {
       return
     }
 
-    // main loop to create stickman from line_map
+    // loop to create stickman body from line_map
     for (let first_bpindex in line_map) {
       let point_list = line_map[first_bpindex]
       for (let pindex in point_list) {
         let second_bpindex = point_list[pindex]
-        let first_point = find_by_bpindex(data_chunk, first_bpindex)
-        let second_point = find_by_bpindex(data_chunk, second_bpindex)
+        let first_point = find_by_bpindex(data_chunk, first_bpindex, "body")
+        let second_point = find_by_bpindex(data_chunk, second_bpindex, "body")
+  
+        // make sure we've found useful data, skip if not found
+        if (!first_point || !second_point) {
+          continue
+        }
+  
+        // make sure to multiply normalized coordinates to get correct coordinates
+        let x1 = first_point.x * SCENE_WIDTH
+        let x2 = second_point.x * SCENE_WIDTH
+        let y1 = first_point.y * SCENE_HEIGHT
+        let y2 = second_point.y * SCENE_HEIGHT
+  
+        p.line(x1, y1, x2, y2)
+  
+      }
+    }
+
+    // loop to create stickman left hand from hand_map
+    for (let first_bpindex in hand_map) {
+      let point_list = hand_map[first_bpindex]
+      for (let pindex in point_list) {
+        let second_bpindex = point_list[pindex]
+        let first_point = find_by_bpindex(data_chunk, first_bpindex, "left_hand")
+        let second_point = find_by_bpindex(data_chunk, second_bpindex, "left_hand")
+  
+        // make sure we've found useful data, skip if not found
+        if (!first_point || !second_point) {
+          continue
+        }
+  
+        // make sure to multiply normalized coordinates to get correct coordinates
+        let x1 = first_point.x * SCENE_WIDTH
+        let x2 = second_point.x * SCENE_WIDTH
+        let y1 = first_point.y * SCENE_HEIGHT
+        let y2 = second_point.y * SCENE_HEIGHT
+  
+        p.line(x1, y1, x2, y2)
+  
+      }
+    }
+
+    // loop to create stickman right hand from hand_map
+    for (let first_bpindex in hand_map) {
+      let point_list = hand_map[first_bpindex]
+      for (let pindex in point_list) {
+        let second_bpindex = point_list[pindex]
+        let first_point = find_by_bpindex(data_chunk, first_bpindex, "right_hand")
+        let second_point = find_by_bpindex(data_chunk, second_bpindex, "right_hand")
   
         // make sure we've found useful data, skip if not found
         if (!first_point || !second_point) {
