@@ -1,0 +1,8 @@
+#! /bin/bash
+docker container stop ws_broadcast-docker || true
+docker rm ws_broadcast-docker || true
+
+docker run \
+    -it \
+    --name ws_broadcast-docker \
+    klappson/ws_broadcast

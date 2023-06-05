@@ -1,1 +1,4 @@
 *~
+mounts/config/
+mounts/zoperepo/.zodbsync.lock
+mounts/zoperepo/__last_txn__

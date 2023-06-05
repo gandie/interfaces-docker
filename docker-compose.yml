@@ -63,3 +63,12 @@ services:
     networks:
       - backend
       - host
+
+  ws_broadcast:
+    build: ws_broadcast
+    restart: always
+    ports:
+      - "0.0.0.0:4242:4242/tcp"
+    networks:
+      - backend
+      - host

@@ -1,0 +1,47 @@
+#! /usr/bin/python3
+
+import asyncio
+import websockets
+import json
+
+CLIENTS = set()
+
+async def send(websocket, message):
+    try:
+        await websocket.send(message)
+    except websockets.ConnectionClosed:
+        pass
+
+def broadcast(message):
+    for websocket in CLIENTS:
+        asyncio.create_task(send(websocket, message))
+
+async def handler(websocket):
+
+    CLIENTS.add(websocket)
+
+    async for message in websocket:
+        print(message)
+        try:
+            payload = json.loads(message)
+        except json.decoder.JSONDecodeError:
+            print("Invalid json, skipping ...")
+            continue
+
+        event = {
+            "type": "broadcast",
+            "payload": payload,
+        }
+        broadcast(json.dumps(event))
+        #await websocket.send(json.dumps(event))
+
+    CLIENTS.remove(websocket)
+
+
+async def main():
+    async with websockets.serve(handler, "", 8001):
+        await asyncio.Future()  # run forever
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
