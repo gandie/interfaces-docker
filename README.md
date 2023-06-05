@@ -1,17 +1,19 @@
-# Zope-Compose - zope-docker but bigger
+# Interfaces-docker - Interfaces project code running via docker
 
-Currently this isn't more but just me messing around with docker-compose. Feel free to teach me if I'm doing something terribly wrong.
+“Interfaces” will build the bridge between performing arts and computer art. Namely it will capture the dynamics and expression from dance and transport it into the world of code generated art.
+“Interfaces” wants to trigger, push and moderate a dialog between generative artists and choreographers.
+The end result – apart from the resulting artworks – will be a data- and knowledgebase loaded with workflow documentation, sample code, converters and scanners and other open source tools that aim to help creators to run their respective part of collaborations between dance and code art.
+For a generative artist “Interfaces” will provide the dancer to perform in the parameter space of the code. For Choreographers “Interfaces” will open a new stage that has their audience in galleries and on the web.
 
-## What can this do at the moment?
-This compose-repo will start everything you need for a zope-project.
+- [YouTube Introduction](https://youtu.be/LNbGbG5nC9E?t=80)
+- [Join us on Discord](https://discord.com/channels/1068875022220922900/1068875022220922902)
 
-* haproxy
-* zeo in combination with zodbsync
-* postgres
-* zope (currently 3 instances by default)
+## Installation
 
-## How to use
-It's pretty simple
+### Requirements
+
+As this is a bundle of software wrapped into docker images, you need both `
+t's pretty simple
 ```bash
 mkdir mounts
 ./StartZopeCompose
