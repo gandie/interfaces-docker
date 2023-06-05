@@ -33,13 +33,12 @@ async def handler(websocket):
             "payload": payload,
         }
         broadcast(json.dumps(event))
-        #await websocket.send(json.dumps(event))
 
     CLIENTS.remove(websocket)
 
 
 async def main():
-    async with websockets.serve(handler, "", 8001):
+    async with websockets.serve(handler, "", 4242):
         await asyncio.Future()  # run forever
 
 
