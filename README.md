@@ -62,3 +62,11 @@ List of software used in this project:
 - [haproxy load balancer](https://www.haproxy.org/)
 - [tensorflowJS for in-browser scanning](https://www.tensorflow.org/js)
 - [mediapipe ML solutions for server-side scanning](https://developers.google.com/mediapipe)
+- [docker environment template used for this project](https://github.com/Klappson/zope-compose)
+
+# Appreciation
+
+- [7pc](http://7pc.de/) for getting this project on the road
+- [Klappson](https://github.com/Klappson) for sharing his docker knowledge
+
+... and of course all the awesome open source projects mentioned in the link list for providing a rock solid open source basis for this project
