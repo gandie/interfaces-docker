@@ -1,0 +1,7 @@
+[
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'application/wasm')],
+    ]),
+    ('title', 'vision_wasm_internal.wasm'),
+    ('type', 'File'),
+]

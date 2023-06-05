@@ -1,0 +1,33 @@
+<p metal:use-macro="context/master_pt/macros/std_page">
+    <div metal:fill-slot="std_body">
+
+
+        <h1>Mediapipe Live Scan</h1>
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index_html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mediapipe Live Scan</li>
+          </ol>
+        </nav>
+
+        <button class="btn btn-primary" id="start_scan" type="button" data-tour="step: 1; title: Start live scan; content: Start live scan with this button, make sure webcam is enabled">
+            <i class="fa-solid fa-play"></i>
+            <span id="start_scan_label">Start live scan</span>
+            <span id="start_scan_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+
+        <button class="btn btn-primary" id="broadcast_scan" type="button" data-tour="step: 2; title: Broadcast live scan; content: Broadcast live scan to websocket URI">
+            <i class="fa-solid fa-tower-broadcast"></i>
+            <span id="broadcast_scan_label">Start broadcast</span>
+        </button>
+
+        <div style="position: relative;">
+            <video id="webcam" style="width: 1280px; height: 720px; position: abso" autoplay playsinline></video>
+            <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0px; top: 0px;"></canvas>
+        </div>
+
+		<script type="module" src="custom_js"></script>
+
+    </div>
+</p>

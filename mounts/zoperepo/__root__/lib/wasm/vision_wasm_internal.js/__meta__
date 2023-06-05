@@ -1,0 +1,7 @@
+[
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'text/javascript')],
+    ]),
+    ('title', 'vision_wasm_internal.js'),
+    ('type', 'File'),
+]
