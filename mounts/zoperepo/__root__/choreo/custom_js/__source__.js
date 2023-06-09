@@ -199,8 +199,3 @@ function choreo_download(event) {
     }
 
 }
-
-function start_tut(e) {
-    var tourguide = new Tourguide()
-    tourguide.start()
-}

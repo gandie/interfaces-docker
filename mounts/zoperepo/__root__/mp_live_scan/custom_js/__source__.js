@@ -6,41 +6,49 @@ import {
 
 let poseLandmarker;
 let runningMode = "VIDEO";
-let enableWebcamButton;
 let webcamRunning = false;
 
 
 const videoWidth = "640px";
 const videoHeight = "480px";
 
-let ws_uri = "ws://192.168.178.130:4242"
+let ws_addr;
 
-let websocket = new WebSocket(ws_uri);
+let websocket;
 let websocket_opened = false;
 let broadcast_running = false;
-
-const broadcast_btn = document.getElementById("broadcast_scan");
-
-// XXX: better use jquery!?
-//const broadcast_btn = $("#broadcast_scan");
-
-broadcast_btn.addEventListener("click", start_broadcast);
 
 function start_broadcast(event) {
     if (websocket_opened && !broadcast_running) {
         broadcast_running = true;
         console.log("Broadcast started!");
+        $("#bc_not_running").hide();
+        $("#bc_running").show();
     } else {
         broadcast_running = false;
         console.log("Broadcast stopped!");
+        $("#bc_not_running").show();
+        $("#bc_running").hide();
     }
 }
 
-// Connection opened
-websocket.addEventListener("open", (event) => {
-    websocket_opened = true;
-    console.log("Websocket opened!");
-});
+$("#broadcast_scan").click(start_broadcast)
+
+function connect_ws(event) {
+    ws_addr = $("#ws_addr").val();
+    websocket = new WebSocket(ws_addr);
+
+    websocket.addEventListener("open", (event) => {
+        websocket_opened = true;
+        $("#ws_not_connected").hide();
+        $("#ws_connected").show();
+        if (webcamRunning) {
+            $("#broadcast_scan").prop("disabled", false);
+        }
+    });
+}
+
+$("#connect_ws_btn").click(connect_ws)
 
 // Before we can use PoseLandmarker class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment to
@@ -58,6 +66,7 @@ const createPoseLandmarker = async () => {
     numPoses: 1
   });
   console.log("poseLandmarker initialized!");
+  $("#start_scan").prop("disabled", false);
 };
 
 createPoseLandmarker();
@@ -74,10 +83,10 @@ const hasGetUserMedia = () => !!navigator.mediaDevices?.getUserMedia;
 // If webcam supported, add event listener to button for when user
 // wants to activate it.
 if (hasGetUserMedia()) {
-  enableWebcamButton = document.getElementById("start_scan");
-  enableWebcamButton.addEventListener("click", enableCam);
+    $("#start_scan").click(enableCam);
 } else {
-  console.warn("getUserMedia() is not supported by your browser");
+    console.warn("getUserMedia() is not supported by your browser");
+    $("#start_scan").prop("disabled", true);
 }
 
 // Enable the live webcam view and start detection.
@@ -88,11 +97,17 @@ function enableCam(event) {
   }
 
   if (webcamRunning === true) {
-    webcamRunning = false;
-    enableWebcamButton.innerText = "ENABLE PREDICTIONS";
+      webcamRunning = false;
+      broadcast_running = false;
+      $("#broadcast_scan").prop("disabled", true);
+      $("#bc_not_running").show();
+      $("#bc_running").hide();
+
   } else {
-    webcamRunning = true;
-    enableWebcamButton.innerText = "DISABLE PREDICTIONS";
+      webcamRunning = true;
+      if (websocket_opened) {
+          $("#broadcast_scan").prop("disabled", false);
+      }
   }
 
   // getUsermedia parameters.
