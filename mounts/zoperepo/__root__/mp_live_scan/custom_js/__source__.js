@@ -8,11 +8,11 @@ let poseLandmarker;
 let runningMode = "VIDEO";
 let webcamRunning = false;
 
-
-const videoWidth = "640px";
-const videoHeight = "480px";
+let videoWidth = "640px";
+let videoHeight = "480px";
 
 let ws_addr;
+let num_poses = 1;
 
 let websocket;
 let websocket_opened = false;
@@ -54,22 +54,32 @@ $("#connect_ws_btn").click(connect_ws)
 // loading. Machine Learning models can be large and take a moment to
 // get everything needed to run.
 const createPoseLandmarker = async () => {
+
+    if ($("#numposes").val()) {
+        num_poses = $("#numposes").val()
+    }
+
   const vision = await FilesetResolver.forVisionTasks(
     "/lib/wasm"
   );
+
+  let model_path = "/lib/models/pose_landmarker_" + $("#model_chooser").val() + ".task"
+
   poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
     baseOptions: {
-      modelAssetPath: `/lib/models/pose_landmarker_full.task`,
+      modelAssetPath: model_path, //`/lib/models/pose_landmarker_full.task`,
       delegate: "GPU"
     },
     runningMode: runningMode,
-    numPoses: 1
+    numPoses: num_poses
   });
   console.log("poseLandmarker initialized!");
   $("#start_scan").prop("disabled", false);
 };
 
-createPoseLandmarker();
+$("#load_model").click(function(event) {
+    createPoseLandmarker();
+})
 
 const video = document.getElementById("webcam");
 const canvasElement = document.getElementById("output_canvas");
@@ -95,6 +105,11 @@ function enableCam(event) {
     console.log("Wait! poseLandmaker not loaded yet.");
     return;
   }
+
+    if ($("#resx").val() && $("#resy").val()) {
+        videoWidth = $("#resx").val() + "px"
+        videoHeight = $("#resy").val() + "px"
+    }
 
   if (webcamRunning === true) {
       webcamRunning = false;
@@ -133,6 +148,7 @@ async function predictWebcam() {
     runningMode = "VIDEO";
     await poseLandmarker.setOptions({ runningMode: "VIDEO" });
   }
+
   let startTimeMs = performance.now();
   if (lastVideoTime !== video.currentTime) {
     lastVideoTime = video.currentTime;

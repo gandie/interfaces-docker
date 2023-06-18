@@ -24,7 +24,7 @@
                 <span id="run_label">Connect websocket</span>
             </button>
 
-            <button disabled class="btn btn-primary" id="broadcast_scan" type="button" data-tour="step: 7; title: Broadcast live scan; content: Broadcast live scan to websocket server. Click again to stop broadcast.">
+            <button disabled class="btn btn-primary" id="broadcast_scan" type="button" data-tour="step: 30; title: Broadcast live scan; content: Broadcast live scan to websocket server. Click again to stop broadcast.">
                 <i class="fa-solid fa-tower-broadcast"></i>
                 <span id="broadcast_scan_label">Start broadcast</span>
             </button>
@@ -37,15 +37,41 @@
         <span id="bc_not_running" class="badge rounded-pill bg-warning text-dark mb-2" data-tour="step: 4; title: Broadcast indicator; content: Indicates wether broadcast is running">Broadcast inactive</span>
         <span id="bc_running" style="display: none;" class="badge rounded-pill bg-success mb-2">Broadcast active</span>
 
+        <h4>Model control</h4>
+        <div class="input-group mb-3">
+
+            <label class="input-group-text" for="model_chooser">Model</label>
+            <select class="form-select" id="model_chooser" data-tour="step: 5; title: Choose model; content: Choose between Full and Lite model for scan">
+                <option value="full" selected>Full</option>
+                <option value="lite">Lite</option>
+            </select>
+
+            <label class="input-group-text" for="numposes">Number of poses</label>
+            <input id="numposes" type="text" class="form-control" aria-label="ws_addr" value="1" data-tour="step: 6; title: Number of poses; content: Number of poses to scan in webcam image">
+
+            <button class="btn btn-primary" id="load_model" type="button" data-tour="step: 7; title: Load model; content: Load model to enable webcam scan.">
+                <i class="fa-solid fa-play"></i>
+                <span id="load_model_label">Load Model</span>
+            </button>
+
+        </div>
+
         <h4>Webcam control</h4>
         <div class="input-group mb-3">
-            <button disabled class="btn btn-primary" id="start_scan" type="button" data-tour="step: 5; title: Start live scan; content: Start live scan with this button, make sure webcam is enabled. Click again to stop pose estimation.">
+
+            <label class="input-group-text" for="resx">Resolution X</label>
+            <input id="resx" type="text" class="form-control" aria-label="ws_addr" value="1920" data-tour="step: 8; title: Resolution X; content: Adjust X-Axis Resolution of camera here">
+
+            <label class="input-group-text" for="resy">Resolution Y</label>
+            <input id="resy" type="text" class="form-control" aria-label="ws_addr" value="1080" data-tour="step: 9; title: Resolution Y; content: Adjust Y-Axis Resolution of camera here">
+
+            <button disabled class="btn btn-primary" id="start_scan" type="button" data-tour="step: 20; title: Start live scan; content: Start live scan with this button, make sure webcam is enabled. Click again to stop pose estimation.">
                 <i class="fa-solid fa-play"></i>
                 <span id="start_scan_label">Start webcan and live scan</span>
             </button>
         </div>
 
-        <div style="position: relative;" data-tour="step: 6; title: Webcam and scan stage; content: Webcam and live scan will be shown here">
+        <div style="position: relative;" data-tour="step: 25; title: Webcam and scan stage; content: Webcam and live scan will be shown here">
             <video id="webcam" style="width: 1280px; height: 720px; position: abso" autoplay playsinline></video>
             <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0px; top: 0px;"></canvas>
         </div>
