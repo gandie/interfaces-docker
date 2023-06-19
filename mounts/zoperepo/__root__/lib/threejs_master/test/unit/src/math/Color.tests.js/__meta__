@@ -1,7 +1,0 @@
-[
-    ('props', [
-        [('id', 'content_type'), ('type', 'string'), ('value', 'application/javascript')],
-    ]),
-    ('title', ''),
-    ('type', 'File'),
-]

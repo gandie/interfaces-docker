@@ -1,7 +1,0 @@
-[
-    ('props', [
-        [('id', 'content_type'), ('type', 'string'), ('value', 'image/svg+xml')],
-    ]),
-    ('title', ''),
-    ('type', 'File'),
-]
