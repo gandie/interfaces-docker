@@ -49,7 +49,16 @@
             <label class="input-group-text" for="numposes">Number of poses</label>
             <input id="numposes" type="text" class="form-control" aria-label="ws_addr" value="1" data-tour="step: 6; title: Number of poses; content: Number of poses to scan in webcam image">
 
-            <button class="btn btn-primary" id="load_model" type="button" data-tour="step: 7; title: Load model; content: Load model to enable webcam scan.">
+            <label class="input-group-text" for="minPoseDetectionConfidence">minPoseDetectionConfidence</label>
+            <input type="range" min="0" max="1" value="0.5" step="0.05" id="minPoseDetectionConfidence" data-tour="step: 7; title: minPoseDetectionConfidence [0..1]; content: The minimum confidence score for the pose detection to be considered successful">
+
+            <label class="input-group-text" for="minPosePresenceConfidence">minPosePresenceConfidence</label>
+            <input type="range" min="0" max="1" value="0.5" step="0.05" id="minPosePresenceConfidence" data-tour="step: 8; title: minPosePresenceConfidence [0..1]; content: The minimum confidence score of pose presence score in the pose landmark detection">
+
+            <label class="input-group-text" for="minTrackingConfidence">minTrackingConfidence</label>
+            <input type="range" min="0" max="1" value="0.5" step="0.05" id="minTrackingConfidence" data-tour="step: 9; title: minTrackingConfidence [0..1]; content: The minimum confidence score for the pose tracking to be considered successful">
+
+            <button class="btn btn-primary" id="load_model" type="button" data-tour="step: 10; title: Load model; content: Load model to enable webcam scan.">
                 <i class="fa-solid fa-play"></i>
                 <span id="load_model_label">Load Model</span>
             </button>
@@ -60,10 +69,10 @@
         <div class="input-group mb-3">
 
             <label class="input-group-text" for="resx">Resolution X</label>
-            <input id="resx" type="text" class="form-control" aria-label="ws_addr" value="1920" data-tour="step: 8; title: Resolution X; content: Adjust X-Axis Resolution of camera here">
+            <input id="resx" type="text" class="form-control" aria-label="ws_addr" value="1920" data-tour="step: 11; title: Resolution X; content: Adjust X-Axis Resolution of camera here">
 
             <label class="input-group-text" for="resy">Resolution Y</label>
-            <input id="resy" type="text" class="form-control" aria-label="ws_addr" value="1080" data-tour="step: 9; title: Resolution Y; content: Adjust Y-Axis Resolution of camera here">
+            <input id="resy" type="text" class="form-control" aria-label="ws_addr" value="1080" data-tour="step: 12; title: Resolution Y; content: Adjust Y-Axis Resolution of camera here">
 
             <button disabled class="btn btn-primary" id="start_scan" type="button" data-tour="step: 20; title: Start live scan; content: Start live scan with this button, make sure webcam is enabled. Click again to stop pose estimation.">
                 <i class="fa-solid fa-play"></i>

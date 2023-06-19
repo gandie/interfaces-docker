@@ -71,7 +71,10 @@ const createPoseLandmarker = async () => {
       delegate: "GPU"
     },
     runningMode: runningMode,
-    numPoses: num_poses
+    numPoses: num_poses,
+    minPoseDetectionConfidence: $("#minPoseDetectionConfidence").val(),
+    minPosePresenceConfidence: $("#minPosePresenceConfidence").val(),
+    minTrackingConfidence: $("#minTrackingConfidence").val(),
   });
   console.log("poseLandmarker initialized!");
   $("#start_scan").prop("disabled", false);
