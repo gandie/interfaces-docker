@@ -13,7 +13,29 @@ $(document).on("choreo-select-load", function(event) {
     })
 })
 
+$(document).keydown(function (e) {
+    // CTRL+R - run code
+    if (e.keyCode == 82 && event.ctrlKey) {
+        e.preventDefault()
+        runCode(e)
+    }
+
+    // CTRL+S - save code
+    if (e.keyCode == 83 && event.ctrlKey) {
+        e.preventDefault()
+        saveTextAsFile(myCodeMirror.getValue(), 'p5_code.js')
+    }
+
+});
+
 $(function() {
+
+    var myModalEl = document.querySelector('#bp_info_modal')
+    var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+
+    $("#show_bp_model").click(function(event) {
+        modal.show()
+    })
 
     $.get(
         "choreo_select_pt",
@@ -33,41 +55,7 @@ $(function() {
     )
 
     $("#run_code").click(function(event) {
-
-        $("#data_loading").show()
-
-        if (stage) {
-            stage.remove()
-        }
-
-        $("#p5_stage").empty()
-
-        let choreo_id = $("#choreo_id").val()
-        let jsonpath_expr = $("#jsonpath").val()
-
-        $.getJSON(
-            'choreo/fetch_jsonpath',
-            {
-                choreo_id: choreo_id,
-                jsonpath_expr: jsonpath_expr
-            },
-            function( data ) {
-                DATA = data.choreo_json
-
-                let jscode = myCodeMirror.getValue()
-        
-                if(oScript) {
-                    oScript.remove()
-                }
-                
-                oScript = document.createElement("script")
-                oScriptText = document.createTextNode(jscode)
-                oScript.appendChild(oScriptText)
-                document.body.appendChild(oScript)
-
-                $("#data_loading").hide()
-            }
-        )
+        runCode(event)
     })
 
     $("#download_code").click(function(event) {
@@ -118,6 +106,44 @@ $(function() {
     }).trigger('update')
 
 })
+
+function runCode(event) {
+    $("#data_loading").show()
+
+    if (stage) {
+        stage.remove()
+    }
+
+    $("#p5_stage").empty()
+
+    let choreo_id = $("#choreo_id").val()
+    let jsonpath_expr = $("#jsonpath").val()
+
+    $.getJSON(
+        'choreo/fetch_jsonpath',
+        {
+            choreo_id: choreo_id,
+            jsonpath_expr: jsonpath_expr
+        },
+        function( data ) {
+            DATA = data.choreo_json
+
+            let jscode = myCodeMirror.getValue()
+    
+            if(oScript) {
+                oScript.remove()
+            }
+            
+            oScript = document.createElement("script")
+            oScriptText = document.createTextNode(jscode)
+            oScript.appendChild(oScriptText)
+            document.body.appendChild(oScript)
+
+            $("#data_loading").hide()
+        }
+    )    
+}
+
 
 function saveTextAsFile(textToWrite, fileNameToSaveAs)
 {

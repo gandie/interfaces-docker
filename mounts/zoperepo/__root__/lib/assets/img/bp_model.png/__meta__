@@ -1,0 +1,8 @@
+[
+    ('owner', (['acl_users'], 'dockerzope')),
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'image/png')],
+    ]),
+    ('title', 'bp_model.png'),
+    ('type', 'File'),
+]

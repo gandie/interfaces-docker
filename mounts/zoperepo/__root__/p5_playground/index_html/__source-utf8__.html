@@ -21,6 +21,11 @@
         Tutorial
     </button>
 
+    <button id="show_bp_model" type="button" class="btn btn-success" data-tour="step: 20; title: BlazePose Model; content: BlazePose joint indexmap can be looked up here">
+        <i class="fa-solid fa-person"></i>
+        BlazePose Model
+    </button>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -31,7 +36,7 @@
                     </select>
                     <label class="input-group-text" for="jsonpath">jsonPath</label>
                     <input id="jsonpath" type="text" class="form-control" value="$[*]" aria-label="jsonPath" data-tour="step: 2; title: jsonPath filter; content: Optionally you can further filter your data via jsonPath">
-                    <button class="btn btn-primary" id="run_code" type="button" data-tour="step: 10; title: Run code; content: Now you can run your code using this button ;-)">
+                    <button class="btn btn-primary" id="run_code" type="button" data-tour="step: 10; title: Run code; content: Now you can run your code using this button OR you press CTRL+R ;-)">
                         <i class="fa-solid fa-play"></i>
                         <span id="run_label">Run code</span>
                         <span id="data_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -74,7 +79,7 @@
                         Import code
                     </button>
 
-                    <button class="btn btn-outline-secondary" id="download_code" type="button" data-tour="step: 11; title: Code download; content: Save your code via download here">
+                    <button class="btn btn-outline-secondary" id="download_code" type="button" data-tour="step: 11; title: Code download; content: Save your code via download here or press CTRL+S">
                         <i class="fa-solid fa-download"></i>
                         Download code
                     </button>
@@ -86,6 +91,26 @@
             </div>
         </div>
     </div>
+
+<div class="modal fade" id="bp_info_modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog mw-100">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">BlazePose Model Diagram</h5>
+      </div>
+      <div class="modal-body">
+          <img src="/lib/assets/img/bp_model.png" alt="BlazePose Joint diagram"></img>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="video_abort_btn">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
   </div>
 </p>
