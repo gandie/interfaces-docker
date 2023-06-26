@@ -5,6 +5,7 @@ var select_template
 var DATA
 var sketch
 var stage
+var cur_choreo_id
 
 $(document).on("choreo-select-load", function(event) {
     $.getJSON("choreo/fetch", function(data) {
@@ -15,13 +16,13 @@ $(document).on("choreo-select-load", function(event) {
 
 $(document).keydown(function (e) {
     // CTRL+R - run code
-    if (e.keyCode == 82 && event.ctrlKey) {
+    if (e.keyCode == 82 && event.ctrlKey && !event.shiftKey) {
         e.preventDefault()
         runCode(e)
     }
 
     // CTRL+S - save code
-    if (e.keyCode == 83 && event.ctrlKey) {
+    if (e.keyCode == 83 && event.ctrlKey && !event.shiftKey) {
         e.preventDefault()
         saveTextAsFile(myCodeMirror.getValue(), 'p5_code.js')
     }
@@ -119,31 +120,42 @@ function runCode(event) {
     let choreo_id = $("#choreo_id").val()
     let jsonpath_expr = $("#jsonpath").val()
 
-    $.getJSON(
-        'choreo/fetch_jsonpath',
-        {
-            choreo_id: choreo_id,
-            jsonpath_expr: jsonpath_expr
-        },
-        function( data ) {
-            DATA = data.choreo_json
-
-            let jscode = myCodeMirror.getValue()
-    
-            if(oScript) {
-                oScript.remove()
+    if (cur_choreo_id !== choreo_id) {
+        $.getJSON(
+            'choreo/fetch_jsonpath',
+            {
+                choreo_id: choreo_id,
+                jsonpath_expr: jsonpath_expr
+            },
+            function( data ) {
+                cur_choreo_id = choreo_id
+                DATA = data.choreo_json
+                run_from_cm()
             }
-            
-            oScript = document.createElement("script")
-            oScriptText = document.createTextNode(jscode)
-            oScript.appendChild(oScriptText)
-            document.body.appendChild(oScript)
+        )    
 
-            $("#data_loading").hide()
-        }
-    )    
+    } else {
+        run_from_cm()
+    }
+
 }
 
+function run_from_cm() {
+
+    $("#data_loading").hide()
+
+    let jscode = myCodeMirror.getValue()
+
+    if(oScript) {
+        oScript.remove()
+    }
+
+    oScript = document.createElement("script")
+    oScriptText = document.createTextNode(jscode)
+    oScript.appendChild(oScriptText)
+    document.body.appendChild(oScript)    
+
+}
 
 function saveTextAsFile(textToWrite, fileNameToSaveAs)
 {

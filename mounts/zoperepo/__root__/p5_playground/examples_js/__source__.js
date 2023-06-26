@@ -64,9 +64,9 @@ sketch = function(p) {
 
         // early exit data check
         if (!data_chunk || data_chunk.keypoints) {
-            console.log("Incompatible / broken data, aborting ...")
-            console.log("This sketch is only compatible to BlazePose framewise scans")
-            console.log("Will not work on tensorflowJS records!")
+            //console.log("Incompatible / broken data, aborting ...")
+            //console.log("This sketch is only compatible to BlazePose framewise scans")
+            //console.log("Will not work on tensorflowJS records!")
             p.noLoop()
             return
         }
@@ -243,7 +243,7 @@ function find_by_bpindex(frame, bpindex, joint_type) {
       return joint
     }
   }
-  console.log("Warning! No matching joint found!")
+  //console.log("Warning! No matching joint found!")
 }
 
 // make sure the following line remains unchanged!
@@ -270,9 +270,9 @@ sketch = function(p) {
 
     // early exit data check
     if (!data_chunk || data_chunk.keypoints) {
-      console.log("Incompatible / broken data, aborting ...")
-      console.log("This sketch is only compatible to BlazePose framewise scans")
-      console.log("Will not work on tensorflowJS records!")
+      //console.log("Incompatible / broken data, aborting ...")
+      //console.log("This sketch is only compatible to BlazePose framewise scans")
+      //console.log("Will not work on tensorflowJS records!")
       p.noLoop()
       return
     }
@@ -389,7 +389,7 @@ sketch = function(p) {
     // Add your drawing code HERE!
 
     // example to log one record from DATA in console
-    console.log(DATA[index]);
+    //console.log(DATA[index]);
 
     // example to loop over DATA via index variable
     if (index > DATA.length) {
@@ -481,7 +481,7 @@ sketch = function(p) {
 
     // early exit data check
     if (!data_chunk || data_chunk.keypoints) {
-      console.log("Incompatible / broken data, aborting ...")
+      //console.log("Incompatible / broken data, aborting ...")
       return
     }
 
@@ -492,8 +492,8 @@ sketch = function(p) {
         let second_bpindex = point_list[pindex]
         let first_point = data_chunk[0][first_bpindex]
         let second_point = data_chunk[0][second_bpindex]
-        console.log([first_bpindex, second_bpindex])
-        console.log([first_point, second_point])
+        //console.log([first_bpindex, second_bpindex])
+        //console.log([first_point, second_point])
   
         // make sure we've found useful data, skip if not found
         if (!first_point || !second_point) {
@@ -506,7 +506,7 @@ sketch = function(p) {
         let y1 = first_point.y * SCENE_HEIGHT
         let y2 = second_point.y * SCENE_HEIGHT
 
-        console.log([x1, y1, x2, y2])
+        //console.log([x1, y1, x2, y2])
         p.line(x1, y1, x2, y2)
   
       }
@@ -575,7 +575,7 @@ function find_by_bpindex(frame, bpindex, joint_type) {
       return joint
     }
   }
-  console.log("Warning! No matching joint found!")
+  //console.log("Warning! No matching joint found!")
 }
 
 // make sure the following line remains unchanged!
@@ -606,9 +606,9 @@ sketch = function(p) {
 
     // early exit data check
     if (!data_chunk || data_chunk.keypoints) {
-      console.log("Incompatible / broken data, aborting ...")
-      console.log("This sketch is only compatible to BlazePose framewise scans")
-      console.log("Will not work on tensorflowJS records!")
+      //console.log("Incompatible / broken data, aborting ...")
+      //console.log("This sketch is only compatible to BlazePose framewise scans")
+      //console.log("Will not work on tensorflowJS records!")
       p.noLoop()
       return
     }
@@ -860,7 +860,7 @@ function findJoinByName(frameidx, name)
       return joint;
     }
   }
-  console.log("index not found", frameidx, name);
+  //console.log("index not found", frameidx, name);
   return false;
 }
 
@@ -925,7 +925,7 @@ sketch = function(p) {
       p.noStroke();
       p.circle(this.x * SCENE_WIDTH, this.y * SCENE_HEIGHT, this.weight * this.k);
       this.k *= 0.95;
-      //console.log(this.k);
+      ////console.log(this.k);
       return (this.k >= 0.5);
     }
 
@@ -1077,7 +1077,7 @@ sketch = function(p) {
         if (y > yrange[1]) yrange[1] = y;
       };
 
-      console.log("parsing");
+      //console.log("parsing");
       for (var i = 0; i < DATA.length; ++i)
       {
         let data_chunk = DATA[i];
@@ -1085,9 +1085,9 @@ sketch = function(p) {
         // early exit data check
         if (!data_chunk || data_chunk.keypoints)
         {
-          console.log("Incompatible / broken data, aborting ...");
-          console.log("This sketch is only compatible to BlazePose framewise scans");
-          console.log("Will not work on tensorflowJS records!");
+          //console.log("Incompatible / broken data, aborting ...");
+          //console.log("This sketch is only compatible to BlazePose framewise scans");
+          //console.log("Will not work on tensorflowJS records!");
           break;
         }
 
@@ -1127,7 +1127,6 @@ sketch = function(p) {
         SUBDATA[i][3] = SUBDATA[i][3] * ky + dy;
         SUBDATA[i][5] = SUBDATA[i][5] * ky + dy;
       }
-      DATA = []; // free RAM
     }
     PAINTLINES = [];
     var colors = PALETTE[2];
@@ -1230,7 +1229,7 @@ function find_by_bpindex(frame, bpindex, joint_type) {
       return joint
     }
   }
-  console.log("Warning! No matching joint found!")
+  //console.log("Warning! No matching joint found!")
 }
 
 // make sure the following line remains unchanged!
@@ -1261,9 +1260,9 @@ sketch = function(p) {
 
     // early exit data check
     if (!data_chunk || data_chunk.keypoints) {
-      console.log("Incompatible / broken data, aborting ...")
-      console.log("This sketch is only compatible to BlazePose framewise scans")
-      console.log("Will not work on tensorflowJS records!")
+      //console.log("Incompatible / broken data, aborting ...")
+      //console.log("This sketch is only compatible to BlazePose framewise scans")
+      //console.log("Will not work on tensorflowJS records!")
       p.noLoop()
       return
     }
