@@ -112,5 +112,6 @@ List of software used in this project:
 
 - [7pc](http://7pc.de/) for getting this project on the road
 - [Klappson](https://github.com/Klappson) for sharing his docker knowledge
+- [r1b2art](https://github.com/r1b2art) for sharing awesome p5 code pieces
 
 ... and of course all the awesome open source projects mentioned in the link list for providing a rock solid open source basis for this project
