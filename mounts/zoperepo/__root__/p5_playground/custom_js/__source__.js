@@ -38,6 +38,10 @@ $(function() {
         modal.show()
     })
 
+    $("#live_mode_btn").click(function(event) {
+        live_mode()
+    })
+
     $.get(
         "choreo_select_pt",
         function(data) {
@@ -226,4 +230,10 @@ function downloadSVGAsPNG(e){
           a.dispatchEvent(my_evt);
         }
     }  
+}
+
+function live_mode() {
+    $("html").css("background-color", "black")
+    $("canvas").prependTo("html")
+    $("body").hide()
 }
