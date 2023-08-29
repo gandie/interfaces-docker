@@ -1334,8 +1334,10 @@ var EPHEMERAL = true;
 var EPHEMERAL_ALPHA = 5; // 0-255. lower = longer lasting persistence
 var FPS = 50;
 var SCENE_SCALE = 1;
-var SCENE_WIDTH = 800
-var SCENE_HEIGHT = 450
+var SCENE_WIDTH = 2750
+var SCENE_HEIGHT = 768
+
+var osc
 
 var PALETTES = [
   //["Autumn Rhythm", '#d3b893', ['#e3ded640', '#100d0340', '#99846040', '#99846040', '#4a4b5440', '#85756640', '#21211d40']],
@@ -1626,6 +1628,13 @@ sketch = function(p) {
     p.background(PALETTE[1]);
     p.frameRate(FPS);
 
+    osc = new p5.Oscillator('sine');
+
+    p.userStartAudio();
+    osc.freq(440, 0.1);
+    osc.amp(0, 0.1);
+    osc.start()
+
     // compute the x/y range to center the artwork
     if (!LIVEMODE)
     {
@@ -1731,6 +1740,14 @@ sketch = function(p) {
       }
 
       PAINTLINES[i].move(x, y);
+    }
+
+    let left_hand = getJointPosition(42, 16)
+    if (left_hand) {
+        let my_freq = left_hand[1] * 500
+        let my_amp = left_hand[0]
+        osc.freq(my_freq, 0.1);
+        osc.amp(my_amp, 0.1);
     }
 
     var i = 0;
