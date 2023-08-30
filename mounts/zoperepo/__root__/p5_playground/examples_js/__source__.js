@@ -1329,7 +1329,6 @@ var r1b2_live = `
 
 // SETTINGS/ VARIABLES START
 
-var LIVEMODE = false;
 var EPHEMERAL = true;
 var EPHEMERAL_ALPHA = 5; // 0-255. lower = longer lasting persistence
 var FPS = 50;
@@ -1337,8 +1336,11 @@ var SCENE_SCALE = 1;
 var SCENE_WIDTH = 2750
 var SCENE_HEIGHT = 768
 
+// oscilator for sound 
 var osc
 
+// Hack for live installation: Add more colors to force more lines being drawn
+// Keep other palettes to allow fast switching with some copy paste
 var PALETTES = [
   //["Autumn Rhythm", '#d3b893', ['#e3ded640', '#100d0340', '#99846040', '#99846040', '#4a4b5440', '#85756640', '#21211d40']],
   //["Number 1", '#e4caa8', ['#d2aa3440', '#30393d40', '#fff1d540', '#428e9440', '#f7ccc840', '#5c1a1440', '#10624440']],
@@ -1373,10 +1375,6 @@ var PAINTLINES;
 var DRIPS = [];
 
 var no_detection = false;
-
-// basic loop index to loop over DATA in draw() method
-var index = 0;
-
 var timer = 0;
 
 var raw_data
@@ -1398,22 +1396,6 @@ my_websocket.addEventListener("message", (event) => {
 // helper functions which may live outside of the sketch scope
 // as they don't rely on p5 components ( call stuff from p namespace )
 
-// https://github.com/google/mediapipe/blob/master/docs/solutions/pose.md
-function findJoinByName(frameidx, name)
-{
-  let frame = DATA[frameidx];
-  for (let joint_index in frame)
-  {
-    let joint = frame[joint_index];
-    if (joint.name == name)
-    {
-      return joint;
-    }
-  }
-  //console.log("index not found", frameidx, name);
-  return false;
-}
-
 // https://www.desmos.com/calculator/1930qsv4kw
 function parabolaInterpolator(y0, y1, y2)
 {
@@ -1422,31 +1404,20 @@ function parabolaInterpolator(y0, y1, y2)
   return (x) => a * x * x + b * x + y0;
 }
 
-function getJointPosition(frame, jointnr)
+function getJointPosition(jointnr)
 {
-  if (LIVEMODE)
-  {
-    let idx = findJoinByName(frame, JOINTS[jointnr]);
-    return [idx.x, idx.y];
-  }
-  else
-  {
-    //return [SUBDATA[frame][2 * jointnr], SUBDATA[frame][2 * jointnr + 1]];
-    if (cur_data && cur_data[0]) {
+  // Another hack for live ws mode: fetch coordinates from
+  // cur_data which comes via websocket event listener
+  // return coordinates far away from canvas and set flag if nothing found
+  if (cur_data && cur_data[0]) {
 
-      /*
-      let cur_x = cur_data[0][2 * jointnr].x
-      let cur_y = cur_data[0][2 * jointnr + 1].y
-      */
-      //console.log(cur_x, cur_y, jointnr)
-      let cur_x = cur_data[0][jointnr].x
-      let cur_y = cur_data[0][jointnr + 1].y
-      no_detection = false
-      return [cur_x, cur_y]
-    } else {
-      no_detection = true
-      return [-1000,-1000]
-    }
+    let cur_x = cur_data[0][jointnr].x
+    let cur_y = cur_data[0][jointnr + 1].y
+    no_detection = false
+    return [cur_x, cur_y]
+  } else {
+    no_detection = true
+    return [-1000,-1000]
   }
 }
 
@@ -1490,7 +1461,6 @@ sketch = function(p) {
       p.noStroke();
       p.circle(this.x * SCENE_WIDTH, this.y * SCENE_HEIGHT, this.weight * this.k);
       this.k *= 0.95;
-      ////console.log(this.k);
       return (this.k >= 0.5);
     }
 
@@ -1628,86 +1598,20 @@ sketch = function(p) {
     p.background(PALETTE[1]);
     p.frameRate(FPS);
 
+    // Sound setup, prepare oscilator, makes little "boop" on start
     osc = new p5.Oscillator('sine');
-
     p.userStartAudio();
     osc.freq(440, 0.1);
     osc.amp(0, 0.1);
     osc.start()
 
-    // compute the x/y range to center the artwork
-    if (!LIVEMODE)
-    {
-      SUBDATA = [];
-      var xrange = [1.0, 0.0];
-      var yrange = [1.0, 0.0];
-
-      var rangeCheck = (x, y) => {
-        if (x < xrange[0]) xrange[0] = x;
-        if (x > xrange[1]) xrange[1] = x;
-        if (y < yrange[0]) yrange[0] = y;
-        if (y > yrange[1]) yrange[1] = y;
-      };
-
-      //console.log("parsing");
-      for (var i = 0; i < DATA.length; ++i)
-      {
-        let data_chunk = DATA[i];
-
-        // early exit data check
-        if (!data_chunk || data_chunk.keypoints)
-        {
-          //console.log("Incompatible / broken data, aborting ...");
-          //console.log("This sketch is only compatible to BlazePose framewise scans");
-          //console.log("Will not work on tensorflowJS records!");
-          break;
-        }
-
-
-        var nextFrame = [];
-        for (var j = 0; j < JOINTS.length; ++j)
-        {
-          let idx = findJoinByName(i, JOINTS[j]);
-          if (idx)
-          {
-            nextFrame.push(idx.x);
-            nextFrame.push(idx.y);
-            rangeCheck(idx.x, idx.y);
-          }
-          else
-          {
-            nextFrame = [];
-            break;
-          }
-        }
-        if (nextFrame.length) SUBDATA.push(nextFrame);
-      }
-
-      // recenter SUBDATA
-      // 0.3....0.6 => 0.35...0.65, dx=0.5-0.9/2 = 0.05
-      var kx = 0.8 / (xrange[1] - xrange[0]);
-      var ky = 0.8 / (yrange[1] - yrange[0]);
-
-      var dx = 0.5 - kx * (xrange[1] + xrange[0]) / 2;
-      var dy = 0.5 - ky * (yrange[1] + yrange[0]) / 2;
-      for (var i = 0; i < SUBDATA.length; ++i)
-      {
-        SUBDATA[i][0] = SUBDATA[i][0] * kx + dx;
-        SUBDATA[i][2] = SUBDATA[i][2] * kx + dx;
-        SUBDATA[i][4] = SUBDATA[i][4] * kx + dx;
-        SUBDATA[i][1] = SUBDATA[i][1] * ky + dy;
-        SUBDATA[i][3] = SUBDATA[i][3] * ky + dy;
-        SUBDATA[i][5] = SUBDATA[i][5] * ky + dy;
-      }
-    }
     PAINTLINES = [];
     var colors = PALETTE[2];
     for (var i = 0; i < colors.length; ++i)
     {
-      var [x, y] = getJointPosition(0, i);
+      var [x, y] = getJointPosition(i);
       PAINTLINES.push(new PaintLine(colors[i], x, y));
     }
-    index = 0;
   }
 
   p.draw = function() {
@@ -1720,10 +1624,8 @@ sketch = function(p) {
       p.rect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
     }
 
-    const nframes = LIVEMODE ? DATA.length : SUBDATA.length;
-
+    // clear canvas in live mode after some ticks
     timer++
-
     if (timer > 250) {
       timer = 0
       p.clear();
@@ -1732,7 +1634,7 @@ sketch = function(p) {
 
     for (var i = 0; i < PAINTLINES.length; ++i)
     {
-      let [x, y] = getJointPosition(index, i);
+      let [x, y] = getJointPosition(i);
 
       if (no_detection) {
         no_detection = false;
@@ -1742,7 +1644,8 @@ sketch = function(p) {
       PAINTLINES[i].move(x, y);
     }
 
-    let left_hand = getJointPosition(42, 16)
+    // sound generator hack
+    let left_hand = getJointPosition(16)
     if (left_hand) {
         let my_freq = left_hand[1] * 500
         let my_amp = left_hand[0]

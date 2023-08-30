@@ -27,20 +27,27 @@
         BlazePose Model
     </button>
 
-    <button id="live_mode_btn" type="button" class="btn btn-primary" data-tour="step: 200; title: Live mode; content: Switch to live mode">
-        Live Mode
+    <button id="live_mode_btn" type="button" class="btn btn-danger" data-tour="step: 200; title: Live Mode View; content: Switch to live mode view, hide everything except of p5 canvas. Attention! No way back but to reload page!">
+        Live Mode View
     </button>
+
+    <div class="form-check form-switch mb-3 mt-3" data-tour="step: 210; title: Live Mode View switch; content: Activate live mode for data, activate to avoid loading data if not needed">
+        <input class="form-check-input" type="checkbox" id="livemode_check">
+        <label class="form-check-label" for="livemode_check">Live mode, do not load data</label>
+    </div>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <h4>p5 stage</h4>
+
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="choreo_id">Record to use as DATA</label>
                     <select class="form-select" id="choreo_id" aria-label="Record to use as DATA" data-tour="step: 1; title: Record selection; content: Start by selecting the record you want to run here">
                     </select>
                     <label class="input-group-text" for="jsonpath">jsonPath</label>
                     <input id="jsonpath" type="text" class="form-control" value="$[*]" aria-label="jsonPath" data-tour="step: 2; title: jsonPath filter; content: Optionally you can further filter your data via jsonPath">
+
                     <button class="btn btn-primary" id="run_code" type="button" data-tour="step: 10; title: Run code; content: Now you can run your code using this button OR you press CTRL+R ;-)">
                         <i class="fa-solid fa-play"></i>
                         <span id="run_label">Run code</span>

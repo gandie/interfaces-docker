@@ -124,7 +124,7 @@ function runCode(event) {
     let choreo_id = $("#choreo_id").val()
     let jsonpath_expr = $("#jsonpath").val()
 
-    if (cur_choreo_id !== choreo_id) {
+    if (cur_choreo_id !== choreo_id && !$("#livemode_check").is(":checked")) {
         $.getJSON(
             'choreo/fetch_jsonpath',
             {
