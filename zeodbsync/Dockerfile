@@ -18,7 +18,7 @@ RUN pip3 install zope \
     Products.ExternalMethod \
     Products.MailHost \
     git+https://github.com/perfact/ZPsycopgDA \
-    git+https://github.com/perfact/zodbsync \
+    perfact-zodbsync \
     git+https://loc.kplays.de:8080/Python/dockerutils.git \
     Paste
 
