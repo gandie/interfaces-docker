@@ -2,6 +2,7 @@ var myCodeMirror
 var oScript
 var oScriptText
 var select_template
+var example_template
 var DATA
 var sketch
 var stage
@@ -13,6 +14,15 @@ $(document).on("choreo-select-load", function(event) {
         $("#choreo_id").html(select_html)
     })
 })
+
+$(document).on("example-select-load", function(event) {
+    $.getJSON("get_examples", function(data) {
+        console.log(data)
+        let select_html = example_template(data)
+        $("#example_chooser").html(select_html)
+    })
+})
+
 
 $(document).keydown(function (e) {
     // CTRL+R - run code
@@ -47,6 +57,14 @@ $(function() {
         function(data) {
             select_template = Handlebars.compile(data)
             $(document).trigger("choreo-select-load")
+        }
+    )
+
+    $.get(
+        "example_select_pt",
+        function(data) {
+            example_template = Handlebars.compile(data)
+            $(document).trigger("example-select-load")
         }
     )
 

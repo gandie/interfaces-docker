@@ -8,6 +8,6 @@
     ]),
     ('proxy_roles', [
     ]),
-    ('title', 'Fetch examples from examples folder and create one js file from it'),
+    ('title', ''),
     ('type', 'Script (Python)'),
 ]

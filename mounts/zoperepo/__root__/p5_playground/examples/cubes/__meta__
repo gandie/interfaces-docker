@@ -1,0 +1,7 @@
+[
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'text/javascript')],
+    ]),
+    ('title', 'Hannover Workshop Cube example'),
+    ('type', 'File'),
+]
