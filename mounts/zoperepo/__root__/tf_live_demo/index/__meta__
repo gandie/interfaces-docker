@@ -1,7 +1,0 @@
-[
-    ('props', [
-        [('id', 'content_type'), ('type', 'string'), ('value', 'text/html')],
-    ]),
-    ('title', 'tensorflow-js live camera demo'),
-    ('type', 'File'),
-]
