@@ -1,27 +1,71 @@
 <p metal:use-macro="context/master_pt/macros/std_page">
   <div data-tour="step: 1; title: Welcome!; content: Welcome to Interfaces Webapp!" metal:fill-slot="std_body">
-    <h1>Interfaces</h1>
+    <header>
 
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Home</li>
-      </ol>
-    </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="/index_html">
+              <img src="lib/assets/img/logo" width="50px" height="50px" class="d-inline-block align-text-top"></img>
+            </a>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active fs-1" aria-current="page" href="#">Interfaces</a>
+              </div>
+            </div>
+          </div>
+        </nav>
 
-    <button type="button" class="btn btn-success" onclick="start_tut(event)">
-        <i class="fa-solid fa-graduation-cap"></i>
-        Start Tour
-    </button>
+    </header>
 
-    <a href="choreo/index_html" class="btn btn-primary" data-tour="step: 4; title: Choreo database; content: Access database functions and server side video processing here">
-        Database
-    </a>
-    <a href="p5_playground/index_html" class="btn btn-primary" data-tour="step: 6; title: p5js playground; content: Run a p5 sketch against records from database">
-        p5js playground
-    </a>
-    <a href="mp_live_scan/index_html" class="btn btn-primary" data-tour="step: 7; title: mediapipe live scan; content: Live scan from webcam input via mediapipe JS pipeline">
-        MediaPipe live scan
-    </a>
+    <main>
+        <!-- Masthead -->
+        <section class="container-fluid">
+          <div id="masthead" class="container"></div>
+        </section>
+        <!-- Primary Content Area -->
+        <section id="mainContent" class="container-fluid">
+          <div class="container">
+            <div class="row">
+              <!-- Sidebar -->
+              <aside id="sidebar" class="col-md-3 order-2"></aside>
+              <!-- article/content -->
+              <article id="content" class="col-md-9 order-1">
+
+                <button type="button" class="btn btn-success" onclick="start_tut(event)">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Start Tour
+                </button>
+                
+                <a href="choreo/index_html" class="btn btn-secondary" data-tour="step: 4; title: Choreo database; content: Access database functions and server side video processing here">
+                    Database
+                </a>
+                <a href="p5_playground/index_html" class="btn btn-secondary" data-tour="step: 6; title: p5js playground; content: Run a p5 sketch against records from database">
+                    p5js playground
+                </a>
+                <a href="mp_live_scan/index_html" class="btn btn-secondary" data-tour="step: 7; title: mediapipe live scan; content: Live scan from webcam input via mediapipe JS pipeline">
+                    MediaPipe live scan
+                </a>
+              </article>
+
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <footer class="container-fluid">
+      <!-- footer menu area -->
+      <div id="footerPrimary" class="container">
+      </div>
+      <!-- subfooter menu area -->
+      <div id="subFooter" class="container">
+      </div>
+    </footer>
+
 
   </div>
 </p>
