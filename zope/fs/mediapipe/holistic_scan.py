@@ -7,7 +7,6 @@ import json
 import subprocess
 import pprint
 
-os.chdir('/mediapipe')
 
 def extract_frames(video_path):
     '''
@@ -143,6 +142,8 @@ def scan(img_paths):
 
 def main():
 
+    os.chdir('/mediapipe')
+
     assert len(sys.argv) == 2, 'invalid args: one target video expected!'
 
     tgt_vid_path = sys.argv[1]
@@ -159,22 +160,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-img_paths = [item for item in os.listdir() if item.endswith('.jpg')]
-img_paths.sort(key=lambda x: int(x.split('.')[0]))
-
-
-
-print('OK')
