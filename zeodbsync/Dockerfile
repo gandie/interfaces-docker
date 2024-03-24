@@ -8,8 +8,10 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
     iproute2 \
     tree -y
 
-RUN pip3 install zope \
-    zope.mkzeoinstance \
+
+RUN pip3 install Zope[wsgi]==5.9 -c https://zopefoundation.github.io/Zope/releases/5.9/constraints.txt
+
+RUN pip3 install zope.mkzeoinstance \
     psycopg2-binary \
     git+https://github.com/gandie/Products.PythonScripts@hacked-python-scripts \
     Products.ZSQLMethods \

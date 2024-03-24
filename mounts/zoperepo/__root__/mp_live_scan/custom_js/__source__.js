@@ -166,6 +166,7 @@ async function predictWebcam() {
       }
       canvasCtx.restore();
       if (broadcast_running) {
+        /// XXX: Make landmarks pickable!
         let to_send = JSON.stringify(result.landmarks);
         websocket.send(to_send);
       }
