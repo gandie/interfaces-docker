@@ -1,0 +1,14 @@
+[
+    ('args', ''),
+    ('bindings', [
+        ('name_container', 'container'),
+        ('name_context', 'context'),
+        ('name_m_self', 'script'),
+        ('name_subpath', 'traverse_subpath'),
+    ]),
+    ('owner', (['acl_users'], 'dockerzope')),
+    ('proxy_roles', [
+    ]),
+    ('title', 'Fetch examples from examples folder and create one js file from it'),
+    ('type', 'Script (Python)'),
+]

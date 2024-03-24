@@ -1,0 +1,118 @@
+<p metal:use-macro="context/master_pt/macros/std_page">
+  <div metal:fill-slot="std_body">
+    <script src="/lib/js/codemirror.js"></script>
+    <link rel="stylesheet" href="/lib/css/codemirror.css">
+    <script src="/lib/js/javascript.js"></script>
+	<script src="examples_js"></script>
+    <script src="app_js"></script>
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+        
+            <a class="navbar-brand" href="/index_html">
+              <img src="lib/assets/img/logo" width="50px" height="50px" class="d-inline-block align-text-top"></img>
+            </a>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active fs-1" aria-current="page" href="#">Playground</a>
+              </div>
+              <div class="navbar-nav">
+                <div class="input-group">
+                    <label class="input-group-text" for="choreo_id">Record to use as DATA</label>
+                    <select class="form-select" id="choreo_id" aria-label="Record to use as DATA">
+                    </select>
+                    <label class="input-group-text" for="example_chooser">Examples</label>
+                    <select class="form-select" id="example_chooser" data-tour="step: 4; title: Code examples; content: Code examples for inspiration can be selected here">
+                    </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <!-- Masthead -->
+        <section class="container-fluid">
+          <div id="masthead" class="container">
+            <button class="btn btn-success" id="run_code" type="button">
+                <i class="fa-solid fa-play"></i>
+                <span id="run_label">Run code</span>
+                <span id="data_loading" style="display: none;" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+          </div>
+        </section>
+        <!-- Primary Content Area -->
+        <section id="mainContent" class="container-fluid">
+          <div class="NOTAcontainer">
+            <div class="row">
+              <!-- Sidebar -->
+              <aside id="sidebar" class="col-md-1 order-2">
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-outline-secondary" id="import_code" type="button">
+                        <i class="fa-solid fa-file-import"></i>
+                        Import code
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-outline-secondary" id="download_code" type="button">
+                        <i class="fa-solid fa-download"></i>
+                        Download code
+                    </button>
+                  </div>
+                </div>                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-outline-secondary" id="download_svg" type="button">
+                        <i class="fa-solid fa-download"></i>
+                        Download SVG
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-outline-secondary" id="download_png" type="button">
+                        <i class="fa-solid fa-download"></i>
+                        Download PNG
+                    </button>
+                  </div>
+                </div>
+              </aside>
+              <!-- article/content -->
+              <article id="content" class="col-md-11 order-1">
+                <div class="row">
+                    <div class="col">
+                        <div id="p5_stage"></div>
+                    </div>
+                    <div class="col">
+                        <div id="editor"></div>
+                    </div>
+                </div>
+
+              </article>
+
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <footer class="container-fluid">
+      <!-- footer menu area -->
+      <div id="footerPrimary" class="container">
+      </div>
+      <!-- subfooter menu area -->
+      <div id="subFooter" class="container">
+      </div>
+    </footer>
+
+  </div>
+</p>

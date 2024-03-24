@@ -1,0 +1,7 @@
+[
+    ('props', [
+        [('id', 'content_type'), ('type', 'string'), ('value', 'text/javascript')],
+    ]),
+    ('title', 'Live r1b2 websocket'),
+    ('type', 'File'),
+]
