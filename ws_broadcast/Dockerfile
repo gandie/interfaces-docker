@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt install \
     iproute2 \
     tree -y
 
-RUN pip3 install --break-system-packages git+https://loc.kplays.de:8080/Python/dockerutils.git \
+RUN pip3 install --break-system-packages git+https://github.com/Klappson/docker-utils.git \
     websockets
 
 COPY fs/ /

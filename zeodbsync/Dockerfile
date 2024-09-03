@@ -21,7 +21,7 @@ RUN pip3 install --break-system-packages zope.mkzeoinstance \
     Products.MailHost \
     git+https://github.com/perfact/ZPsycopgDA \
     perfact-zodbsync \
-    git+https://loc.kplays.de:8080/Python/dockerutils.git \
+    git+https://github.com/Klappson/docker-utils.git \
     Paste
 
 COPY fs/ /

@@ -19,7 +19,7 @@ RUN pip3 install --break-system-packages psycopg2-binary \
     Products.ExternalMethod \
     Products.MailHost \
     git+https://github.com/perfact/ZPsycopgDA \
-    git+https://loc.kplays.de:8080/Python/dockerutils.git \
+    git+https://github.com/Klappson/docker-utils.git \
     zope.mkzeoinstance \
     Paste \
     jsonpath-ng \
