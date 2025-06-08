@@ -53,12 +53,16 @@ def scan(img_paths):
     hand_key_d = {}
     for key in keys:
         value = getattr(mp_holistic.HandLandmark, key)
+        if not getattr(value, "value", None):
+            continue
         hand_key_d[value.value] = key
 
     keys = [item for item in dir(mp_holistic.PoseLandmark) if not item.startswith('__')]
     body_key_d = {}
     for key in keys:
         value = getattr(mp_holistic.PoseLandmark, key)
+        if not getattr(value, "value", None):
+            continue
         body_key_d[value.value] = key
 
     # ... hack end
