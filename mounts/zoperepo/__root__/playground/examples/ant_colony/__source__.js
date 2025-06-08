@@ -103,15 +103,6 @@ sketch = function(p) {
                 // to get the index instead of the element directly
                 for (let joint_index in pose) {
                     let joint = pose[joint_index]
-                    // pick separate joint to do something special
-                    // 16 is "right_wrist", check Help/Blazepose model !
-                    if (joint_index == 16) {
-                        sensorOffset = 200 * joint.z
-                    }
-					// also pick left_foot_index aka 31
-                    if (joint_index == 31) {
-                        stroke_width = 50 * joint.x
-                    }
                     p.line(
                         joint.x * SCENE_WIDTH,
                         joint.y * SCENE_HEIGHT,
